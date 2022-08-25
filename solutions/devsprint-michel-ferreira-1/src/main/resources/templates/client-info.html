@@ -1,0 +1,6 @@
+<div class="card">
+    <div class="card-body">
+        <p class="text-left"><b>Name: </b><span th:text="${client.name}"> Client name</span></p>
+        <p class="text-left"><b>Balance: </b><span th:text="${'R$ ' + #numbers.formatDecimal(client.balance, 1, 2, 'COMMA')}">Client name</span></p>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Challenge Hexagonal</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Challenge Hexagonal Kotlin!</h1>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Clients</h5>
+        </div>
+        <ul class="list-group list-group-flush" th:each="client : ${clients}">
+            <li class="list-group-item justify-content-between align-items-center">
+                <div th:include="client-info"></div>
+                <div th:include="transactions"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<div class="card-body text-right">
+    <a th:href="@{/transaction/{id}(id=${client.id})}" class="btn btn-primary">New Transaction</a>
+</div>
+<table class="table table-striped">
+    <caption>Transactions</caption>
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Merchant</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction : ${client.transactions}">
+        <th scope="row"><span th:text="${transaction.id}"></span></th>
+        <td><span th:text="${transaction.merchant}"></span></td>
+        <td><span th:text="${'R$ ' + #numbers.formatDecimal(transaction.amount, 1, 2, 'COMMA')}"></span></td>
+        <td><span th:text="${#temporals.format(transaction.time, 'dd-MM-yyyy HH:mm')}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
