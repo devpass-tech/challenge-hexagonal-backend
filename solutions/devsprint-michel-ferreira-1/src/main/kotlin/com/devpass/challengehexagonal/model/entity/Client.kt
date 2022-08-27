@@ -10,7 +10,7 @@ data class Client(
 
     val name: String,
 
-    val balance: BigDecimal,
+    var balance: BigDecimal,
 
     @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
     @JoinColumn(name = "client_id")
