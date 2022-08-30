@@ -1,6 +1,6 @@
-package com.devpass.challengehexagonal.controller.dto
+package com.devpass.challengehexagonal.application.controller.dto
 
-import com.devpass.challengehexagonal.model.entity.Transaction
+import com.devpass.challengehexagonal.domain.entity.Transaction
 import java.math.BigDecimal
 import java.time.LocalDateTime
 

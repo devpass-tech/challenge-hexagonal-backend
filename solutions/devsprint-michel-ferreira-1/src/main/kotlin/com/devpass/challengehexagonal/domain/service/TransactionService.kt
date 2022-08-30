@@ -1,7 +1,7 @@
-package com.devpass.challengehexagonal.model.service
+package com.devpass.challengehexagonal.domain.service
 
-import com.devpass.challengehexagonal.controller.dto.TransactionRequestDto
-import com.devpass.challengehexagonal.model.repository.ClientRepository
+import com.devpass.challengehexagonal.application.controller.dto.TransactionRequestDto
+import com.devpass.challengehexagonal.resources.repository.ClientRepository
 import org.springframework.stereotype.Service
 
 @Service

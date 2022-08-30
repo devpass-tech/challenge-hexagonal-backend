@@ -1,7 +1,7 @@
-package com.devpass.challengehexagonal.controller
+package com.devpass.challengehexagonal.application.controller
 
-import com.devpass.challengehexagonal.controller.dto.TransactionRequestDto
-import com.devpass.challengehexagonal.model.service.TransactionService
+import com.devpass.challengehexagonal.application.controller.dto.TransactionRequestDto
+import com.devpass.challengehexagonal.domain.service.TransactionService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set

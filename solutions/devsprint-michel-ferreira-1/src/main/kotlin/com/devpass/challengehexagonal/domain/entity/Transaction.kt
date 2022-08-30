@@ -1,4 +1,4 @@
-package com.devpass.challengehexagonal.model.entity
+package com.devpass.challengehexagonal.domain.entity
 
 import java.math.BigDecimal
 import java.time.LocalDateTime
