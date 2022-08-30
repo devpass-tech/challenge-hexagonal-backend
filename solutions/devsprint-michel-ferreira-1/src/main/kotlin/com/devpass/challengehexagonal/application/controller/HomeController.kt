@@ -1,6 +1,6 @@
-package com.devpass.challengehexagonal.controller
+package com.devpass.challengehexagonal.application.controller
 
-import com.devpass.challengehexagonal.model.repository.ClientRepository
+import com.devpass.challengehexagonal.resources.repository.ClientRepository
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping

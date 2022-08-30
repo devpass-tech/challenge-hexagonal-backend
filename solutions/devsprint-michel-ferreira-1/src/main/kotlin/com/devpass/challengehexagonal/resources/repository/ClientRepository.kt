@@ -1,6 +1,6 @@
-package com.devpass.challengehexagonal.model.repository
+package com.devpass.challengehexagonal.resources.repository
 
-import com.devpass.challengehexagonal.model.entity.Client
+import com.devpass.challengehexagonal.domain.entity.Client
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 import javax.persistence.EntityManager
