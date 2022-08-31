@@ -6,5 +6,5 @@ import java.util.UUID
 class Client(
     id: UUID = UUID.randomUUID(),
     name: String,
-    birthDate: LocalDate?
+    birth_date: LocalDate?
 )

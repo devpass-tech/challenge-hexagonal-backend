@@ -4,6 +4,6 @@ import java.time.LocalDateTime
 
 class Transaction(
     establishment: String,
-    createdAt: LocalDateTime = LocalDateTime.now(),
+    transaction_date: LocalDateTime = LocalDateTime.now(),
     value: Double
 )
