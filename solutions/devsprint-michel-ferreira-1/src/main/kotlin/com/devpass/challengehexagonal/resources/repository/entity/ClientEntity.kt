@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.OneToMany
+import javax.persistence.OneToOne
 
 
 @Entity
@@ -17,6 +18,6 @@ data class ClientEntity(
 
     val birthDate: LocalDate,
 
-    @OneToMany
+    @OneToOne
     val account: AccountEntity,
 )
