@@ -1,4 +1,4 @@
-package com.devpass.challengehexagonal.domain.entity
+package com.devpass.challengehexagonal.resources.repository.entity
 
 import java.math.BigDecimal
 import javax.persistence.*
