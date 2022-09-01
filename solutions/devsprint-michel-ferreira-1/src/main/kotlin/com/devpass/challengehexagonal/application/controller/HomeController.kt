@@ -1,18 +1,18 @@
 package com.devpass.challengehexagonal.application.controller
 
-import com.devpass.challengehexagonal.resources.repository.ClientRepository
+import com.devpass.challengehexagonal.resources.repository.ClientAdapterRepository
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 
 @Controller
 class HomeController(
-    val clientRepository: ClientRepository
+    val clientAdapterRepository: ClientAdapterRepository
 ) {
 
     @GetMapping
     fun home(model: Model): String {
-        model.addAttribute("clients", clientRepository.getClients())
+        model.addAttribute("clients", clientAdapterRepository.getClients())
         return "home"
     }
 }
