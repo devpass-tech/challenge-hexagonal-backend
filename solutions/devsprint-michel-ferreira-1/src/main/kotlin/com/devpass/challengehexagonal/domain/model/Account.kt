@@ -1,7 +1,7 @@
 package com.devpass.challengehexagonal.domain.model
 
-class Account(
-    account_number: Int,
-    balance: Double,
-    transaction_history: List<Transaction>
-)
+data class Account(
+    val accountNumber: Int,
+    val balance: Double,
+    val transactionHistory: List<Transaction>
+){}

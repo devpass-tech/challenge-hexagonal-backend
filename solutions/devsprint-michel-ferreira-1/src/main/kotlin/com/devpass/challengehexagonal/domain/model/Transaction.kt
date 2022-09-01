@@ -2,8 +2,8 @@ package com.devpass.challengehexagonal.domain.model
 
 import java.time.LocalDateTime
 
-class Transaction(
-    establishment: String,
-    transaction_date: LocalDateTime = LocalDateTime.now(),
-    value: Double
+data class Transaction(
+    val establishment: String,
+    val value: Double,
+    val transactionDate: LocalDateTime = LocalDateTime.now()
 )
