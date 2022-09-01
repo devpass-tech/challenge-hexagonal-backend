@@ -1,7 +1,12 @@
 package com.devpass.challengehexagonal.domain.entity
 
-import java.time.LocalDateTime
-import javax.persistence.*
+import java.time.LocalDate
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.OneToMany
+
 
 @Entity
 data class ClientEntity(
@@ -10,10 +15,8 @@ data class ClientEntity(
 
     val name: String,
 
-    val birthDate: LocalDateTime,
+    val birthDate: LocalDate,
 
+    @OneToMany
     val account: AccountEntity,
-
-//    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
-//    @JoinColumn(name = "account_id", referencedColumnName = "account")
 )

@@ -15,8 +15,6 @@ data class TransactionEntity(
 
     val value: BigDecimal,
 
-    val account: AccountEntity,
-
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "account_id", referencedColumnName = "account")
+    @ManyToOne(fetch = FetchType.LAZY)
+    val account: AccountEntity
 )
