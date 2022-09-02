@@ -1,30 +1,22 @@
 package com.devpass.challengehexagonal.application.controller
 
-import com.devpass.challengehexagonal.application.controller.dto.TransactionRequestDto
-import com.devpass.challengehexagonal.domain.service.TransactionService
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.ui.set
+import com.devpass.challengehexagonal.domain.model.Transaction
+import com.devpass.challengehexagonal.domain.ports.TransactionRepositoryPort
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
-@Controller
-@RequestMapping("transaction")
+@RestController
+@RequestMapping("transactions")
 class TransactionController(
-    val transactionService: TransactionService
+    //TODO: Em um segundo momento essa injeção será alterada pela Port correta (TransactionServicePort)
+    //Inclusa aqui apenas para facilitar os testes
+    val transactionRepositoryPort: TransactionRepositoryPort
 ) {
 
-    @GetMapping("/{clientId}")
-    fun transactionForm(@PathVariable clientId: String, model: Model): String {
-        model["clientId"] = clientId
-        return "transaction-form"
-    }
-
-    @PostMapping
-    fun postTransaction(transactionRequestDto: TransactionRequestDto): String {
-        transactionService.processTransaction(transactionRequestDto)
-        return "redirect:"
+    @GetMapping("/client/{clientId}")
+    fun getTransactionsByClient(@PathVariable(value = "clientId") clientId: Long): List<Transaction> {
+        return transactionRepositoryPort.getTransactionsByAccount(clientId)
     }
 }

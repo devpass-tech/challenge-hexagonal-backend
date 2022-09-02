@@ -1,15 +1,9 @@
 package com.devpass.challengehexagonal.resources.repository.entity
 
 import java.time.LocalDate
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.OneToMany
-import javax.persistence.OneToOne
+import javax.persistence.*
 
-
-@Entity
+@Entity(name = "client")
 data class ClientEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -18,6 +12,8 @@ data class ClientEntity(
 
     val birthDate: LocalDate,
 
-    @OneToOne
-    val account: AccountEntity,
+    @OneToOne(cascade = [CascadeType.ALL])
+    val account: AccountEntity
 )
+
+

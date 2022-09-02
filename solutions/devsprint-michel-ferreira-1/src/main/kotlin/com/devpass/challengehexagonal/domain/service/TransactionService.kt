@@ -1,20 +1,17 @@
 package com.devpass.challengehexagonal.domain.service
 
-import com.devpass.challengehexagonal.application.controller.dto.TransactionRequestDto
-import com.devpass.challengehexagonal.resources.repository.ClientAdapterRepository
+import com.devpass.challengehexagonal.domain.model.Transaction
+import com.devpass.challengehexagonal.domain.ports.ClientRepositoryPort
+import com.devpass.challengehexagonal.domain.ports.TransactionRepositoryPort
 import org.springframework.stereotype.Service
 
 @Service
 class TransactionService(
-    val clientAdapterRepository: ClientAdapterRepository
+    val clientRepositoryPort: ClientRepositoryPort,
+    val transactionRepositoryPort: TransactionRepositoryPort
 ) {
 
-    fun processTransaction(transactionRequestDto: TransactionRequestDto) {
-        clientAdapterRepository.getClientById(transactionRequestDto.clientId)
-            .apply {
-                this.transactions.add(transactionRequestDto.toTransaction())
-                this.balance -= transactionRequestDto.amount
-                clientAdapterRepository.saveClient(this)
-            }
+    fun processTransaction(clientId: Long, transaction: Transaction) {
+        TODO("Not yet implemented")
     }
 }

@@ -10,8 +10,5 @@ data class AccountEntity(
 
     val accountNumber: Long? = null,
 
-    var balance: BigDecimal,
-
-    @OneToMany(cascade = [(CascadeType.ALL)], mappedBy = "transaction")
-    val transactions: MutableList<TransactionEntity> = mutableListOf()
+    var balance: BigDecimal
 )
