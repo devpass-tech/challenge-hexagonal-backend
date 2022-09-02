@@ -6,3 +6,7 @@ CREATE TABLE `location` (
   `city`  varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+
+ALTER TABLE `transaction`
+    ADD `location_id` bigint(20),
+	ADD FOREIGN KEY (`location_id`) REFERENCES `location`(`id`);
