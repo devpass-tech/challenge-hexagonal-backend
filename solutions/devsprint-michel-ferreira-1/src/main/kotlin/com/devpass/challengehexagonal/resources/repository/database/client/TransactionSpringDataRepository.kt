@@ -1,9 +1,9 @@
-package com.devpass.challengehexagonal.resources.repository
+package com.devpass.challengehexagonal.resources.repository.database.client
 
 import com.devpass.challengehexagonal.resources.repository.entity.TransactionEntity
 import org.springframework.data.repository.CrudRepository
 
-interface TransactionRepository : CrudRepository<TransactionEntity, Long> {
+interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Long> {
 
     fun findByAccountId(accountId: Long): List<TransactionEntity>
 }
