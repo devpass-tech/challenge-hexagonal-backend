@@ -23,7 +23,8 @@ class TransactionAdapterRepository(
         startDate: LocalDateTime,
         endDate: LocalDateTime,
     ): Boolean {
-        return repository.countTransaction(
+
+        return repository.existsTransactionsByEstablishmentAndDateRage(
             startDate,
             endDate,
             amount,
