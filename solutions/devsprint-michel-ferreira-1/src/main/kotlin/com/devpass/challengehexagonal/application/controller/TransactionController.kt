@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*
 class TransactionController(
         //TODO: Em um segundo momento essa injeção será alterada pela Port correta (TransactionServicePort)
         //Inclusa aqui apenas para facilitar os testes
-        val transactionRepositoryPort: TransactionRepositoryPort
-    val transactionServicePort: TransactionServicePort
+        val transactionRepositoryPort: TransactionRepositoryPort,
+        val transactionServicePort: TransactionServicePort
 ) {
 
     @PostMapping
@@ -24,14 +24,17 @@ class TransactionController(
         TODO("Not yet implemented")
     }
 
-    @GetMapping("/{accountId}/{dateTime}")
+    @GetMapping("/{accountId}/{startDate}/{endDate}")
     fun findByAccountIdAndTransactionDate(
             @PathVariable(value = "accountId")
             accountId: Long,
 
-            @PathVariable(value = "dateTime")
-            dateTime: LocalDateTime,
+            @PathVariable(value = "startDate")
+            startDate: LocalDateTime,
+
+            @PathVariable(value = "endDate")
+            endDate: LocalDateTime
     ): Transaction? {
-        return transactionRepositoryPort.getFirstTransactionByDate(accountId, dateTime)
+        return transactionRepositoryPort.getFirstTransactionByDateRange(accountId, startDate, endDate)
     }
 }

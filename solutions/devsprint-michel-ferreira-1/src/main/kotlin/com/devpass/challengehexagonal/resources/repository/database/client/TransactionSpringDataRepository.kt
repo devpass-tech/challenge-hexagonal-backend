@@ -14,8 +14,10 @@ interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Lo
         endDateTime: LocalDateTime,
     ): List<TransactionEntity>
 
-    fun findByAccountIdAndTransactionDate (
+    fun findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc (
             accountId: Long,
-            dateTime: LocalDateTime = LocalDateTime.now()
+            startDate: LocalDateTime,
+            endDate: LocalDateTime
     ): TransactionEntity?
 }
+

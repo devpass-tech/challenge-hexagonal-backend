@@ -29,7 +29,7 @@ class TransactionAdapterRepository(
         ).map { it.toDomain() }
     }
 
-    override fun getFirstTransactionByDate(accountId: Long, dateTime: LocalDateTime): Transaction? {
-        return repository.findByAccountIdAndTransactionDate(accountId, dateTime)?.toDomain()
+    override fun getFirstTransactionByDateRange(accountId: Long, startDate: LocalDateTime, endDate: LocalDateTime): Transaction? {
+        return repository.findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc(accountId, startDate, endDate)?.toDomain()
     }
 }

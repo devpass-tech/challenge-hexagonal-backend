@@ -16,8 +16,9 @@ interface TransactionRepositoryPort {
         endDate: LocalDateTime,
     ): List<Transaction>
 
-    fun getFirstTransactionByDate(
+    fun getFirstTransactionByDateRange(
             accountId: Long,
-            dateTime: LocalDateTime
+            startDate: LocalDateTime,
+            endDate: LocalDateTime
     ): Transaction?
 }
