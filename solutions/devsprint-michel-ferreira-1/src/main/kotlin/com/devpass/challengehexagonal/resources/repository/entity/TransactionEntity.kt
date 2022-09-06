@@ -20,7 +20,10 @@ data class TransactionEntity(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
-    val account: AccountEntity
+    val account: AccountEntity,
+
+    @OneToOne(cascade = [CascadeType.ALL])
+    val location: LocationEntity
 ) {
     fun toDomain() = Transaction(
         establishment = this.establishment,
