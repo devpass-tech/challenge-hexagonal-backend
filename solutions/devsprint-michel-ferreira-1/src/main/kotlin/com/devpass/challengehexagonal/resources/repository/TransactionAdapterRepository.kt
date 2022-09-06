@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 
 @Repository
 class TransactionAdapterRepository(
-    val repository: TransactionSpringDataRepository
+    private val repository: TransactionSpringDataRepository,
 ) : TransactionRepositoryPort {
 
     override fun getTransactionsByAccount(accountId: Long): List<Transaction> {
@@ -23,7 +23,6 @@ class TransactionAdapterRepository(
         startDate: LocalDateTime,
         endDate: LocalDateTime,
     ): Boolean {
-
         return repository.existsTransactionsByEstablishmentAndDateRage(
             startDate,
             endDate,
@@ -32,4 +31,17 @@ class TransactionAdapterRepository(
         )
     }
 
+    override fun getTransactionByDateRange(
+        accountId: Long,
+        establishment: String,
+        startDate: LocalDateTime,
+        endDate: LocalDateTime,
+    ): List<Transaction> {
+        return repository.findByAccountIdAndEstablishmentAndTransactionDateBetween(
+            accountId = accountId,
+            establishment = establishment,
+            startDateTime = startDate,
+            endDateTime = endDate,
+        ).map { it.toDomain() }
+    }
 }
