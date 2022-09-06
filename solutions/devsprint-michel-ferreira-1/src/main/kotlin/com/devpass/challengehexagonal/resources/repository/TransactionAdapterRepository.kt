@@ -27,7 +27,7 @@ class TransactionAdapterRepository(
             startDate,
             endDate,
             amount,
-            establishment
+            establishment,
         )
     }
 
