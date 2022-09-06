@@ -23,7 +23,12 @@ class TransactionAdapterRepository(
         startDate: LocalDateTime,
         endDate: LocalDateTime
     ): Boolean {
-        TODO("Not yet implemented")
+        return repository.countTransaction(
+            startDate,
+            endDate,
+            amount,
+            establishment
+        )
     }
 
 }
