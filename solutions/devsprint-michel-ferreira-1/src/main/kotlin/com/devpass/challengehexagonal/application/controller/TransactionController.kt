@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.time.LocalDateTime
 import com.devpass.challengehexagonal.domain.service.TransactionServicePort
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDate
 
 @RestController
 @RequestMapping("transactions")
@@ -24,17 +24,14 @@ class TransactionController(
         TODO("Not yet implemented")
     }
 
-    @GetMapping("/{accountId}/{startDate}/{endDate}")
+    @GetMapping("/{accountId}/{date}")
     fun findByAccountIdAndTransactionDate(
             @PathVariable(value = "accountId")
             accountId: Long,
 
-            @PathVariable(value = "startDate")
-            startDate: LocalDateTime,
-
-            @PathVariable(value = "endDate")
-            endDate: LocalDateTime
+            @PathVariable(value = "date")
+            date: LocalDate,
     ): Transaction? {
-        return transactionRepositoryPort.getFirstTransactionByDateRange(accountId, startDate, endDate)
+        return transactionRepositoryPort.getFirstTransactionByDate(accountId, date)
     }
 }

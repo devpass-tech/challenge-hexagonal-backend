@@ -4,6 +4,7 @@ import com.devpass.challengehexagonal.domain.model.Transaction
 import com.devpass.challengehexagonal.domain.ports.TransactionRepositoryPort
 import com.devpass.challengehexagonal.resources.repository.database.client.TransactionSpringDataRepository
 import org.springframework.stereotype.Repository
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Repository
@@ -29,7 +30,9 @@ class TransactionAdapterRepository(
         ).map { it.toDomain() }
     }
 
-    override fun getFirstTransactionByDateRange(accountId: Long, startDate: LocalDateTime, endDate: LocalDateTime): Transaction? {
-        return repository.findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc(accountId, startDate, endDate)?.toDomain()
+    override fun getFirstTransactionByDate(accountId: Long, date: LocalDate): Transaction? {
+        val startOfDay = date.atStartOfDay()
+        val startOfTheNextDay = date.plusDays(1).atStartOfDay()
+        return repository.findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc(accountId, startOfDay, startOfTheNextDay)?.toDomain()
     }
 }
