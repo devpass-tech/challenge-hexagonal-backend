@@ -20,7 +20,7 @@ class TestsController(
 
     @PostMapping("/high-frequency")
     fun test01(): ValidationResult {
-        val account = Account(1, 123, 500.00, emptyList())
+        val account = Account(1, true,123, 500.00, emptyList())
         val transaction = Transaction("Amazon", 400.00.toBigDecimal(), LocalDateTime.now())
         return highFrequencyTransactionRule.validate(account, transaction)
     }
