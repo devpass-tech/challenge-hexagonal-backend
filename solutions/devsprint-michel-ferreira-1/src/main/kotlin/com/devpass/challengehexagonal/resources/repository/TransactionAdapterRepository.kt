@@ -3,12 +3,12 @@ package com.devpass.challengehexagonal.resources.repository
 import com.devpass.challengehexagonal.domain.model.Transaction
 import com.devpass.challengehexagonal.domain.ports.TransactionRepositoryPort
 import com.devpass.challengehexagonal.resources.repository.database.client.TransactionSpringDataRepository
-import java.time.LocalDateTime
 import org.springframework.stereotype.Repository
+import java.time.LocalDateTime
 
 @Repository
 class TransactionAdapterRepository(
-    val repository: TransactionSpringDataRepository,
+    private val repository: TransactionSpringDataRepository,
 ) : TransactionRepositoryPort {
 
     override fun getTransactionsByAccount(accountId: Long): List<Transaction> {
