@@ -1,17 +1,18 @@
-package com.devpass.challengehexagonal.domain.service
+package com.devpass.challengehexagonal.domain.service.impl
 
 import com.devpass.challengehexagonal.domain.model.Transaction
 import com.devpass.challengehexagonal.domain.ports.ClientRepositoryPort
 import com.devpass.challengehexagonal.domain.ports.TransactionRepositoryPort
+import com.devpass.challengehexagonal.domain.service.TransactionServicePort
 import org.springframework.stereotype.Service
 
 @Service
-class TransactionService(
+class TransactionServiceImpl(
     val clientRepositoryPort: ClientRepositoryPort,
     val transactionRepositoryPort: TransactionRepositoryPort
-) {
+) : TransactionServicePort {
 
-    fun processTransaction(clientId: Long, transaction: Transaction) {
+    override fun processTransaction(clientId: Long, transaction: Transaction) {
         TODO("Not yet implemented")
     }
 }

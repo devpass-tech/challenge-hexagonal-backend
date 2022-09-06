@@ -15,5 +15,4 @@ interface TransactionRepositoryPort {
         startDate: LocalDateTime,
         endDate: LocalDateTime,
     ): List<Transaction>
-
 }
