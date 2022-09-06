@@ -21,13 +21,13 @@ class TransactionAdapterRepository(
         amount: BigDecimal,
         establishment: String,
         startDate: LocalDateTime,
-        endDate: LocalDateTime
+        endDate: LocalDateTime,
     ): Boolean {
         return repository.countTransaction(
             startDate,
             endDate,
             amount,
-            establishment
+            establishment,
         )
     }
 
