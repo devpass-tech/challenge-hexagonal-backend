@@ -13,7 +13,7 @@ class ActiveAccountRule(
         val validationResult = ValidationResult()
         val account = accountRepositoryPort.getAccount(accountId = account.id!!)
 
-        if (account.active) {
+        if (!account.active) {
             validationResult.violations.add(Violation.ACCOUNT_NOT_ACTIVE)
         }
         return validationResult
