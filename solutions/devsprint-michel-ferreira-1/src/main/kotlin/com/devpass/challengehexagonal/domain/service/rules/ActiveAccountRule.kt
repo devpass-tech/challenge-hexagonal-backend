@@ -3,7 +3,9 @@ package com.devpass.challengehexagonal.domain.service.rules
 import com.devpass.challengehexagonal.domain.model.Account
 import com.devpass.challengehexagonal.domain.model.ValidationResult
 import com.devpass.challengehexagonal.domain.model.Violation
+import org.springframework.stereotype.Service
 
+@Service
 class ActiveAccountRule {
 
     fun validate(account: Account): ValidationResult {
