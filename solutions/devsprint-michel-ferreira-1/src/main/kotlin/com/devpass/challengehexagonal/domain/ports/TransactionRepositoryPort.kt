@@ -1,6 +1,7 @@
 package com.devpass.challengehexagonal.domain.ports
 
 import com.devpass.challengehexagonal.domain.model.Transaction
+import java.time.LocalDate
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
@@ -24,4 +25,9 @@ interface TransactionRepositoryPort {
         startDate: LocalDateTime,
         endDate: LocalDateTime,
     ): List<Transaction>
+
+    fun getFirstTransactionByDate(
+            accountId: Long,
+            date: LocalDate,
+    ): Transaction?
 }
