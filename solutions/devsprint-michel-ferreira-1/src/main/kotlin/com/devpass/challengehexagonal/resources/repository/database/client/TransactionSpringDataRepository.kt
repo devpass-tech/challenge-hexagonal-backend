@@ -9,9 +9,11 @@ interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Lo
 
     fun findByAccountId(accountId: Long): List<TransactionEntity>
 
-     fun existsTransactionsByEstablishmentAndDateRage(
-         startDateTime: LocalDateTime,
-         endDate: LocalDateTime,
-         amount: BigDecimal,
-         establishment: String): Boolean
+    fun existsByAccountAndValueAndEstablishmentAndTransactionDateBetween(
+        accountId: Long,
+        value: BigDecimal,
+        establishment: String,
+        startDate: LocalDateTime,
+        endDate: LocalDateTime,
+    ) : Boolean
 }

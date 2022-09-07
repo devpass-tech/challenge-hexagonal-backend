@@ -16,20 +16,19 @@ class TransactionAdapterRepository(
         return repository.findByAccountId(accountId).map { it.toDomain() }
     }
 
-    override fun existsByClientIdAndAmountAndEstablishmentAndTransactionDateBetween(
+    override fun getTransactionByDateRange(
         clientId: Long,
-        amount: BigDecimal,
+        value: BigDecimal,
         establishment: String,
         startDate: LocalDateTime,
         endDate: LocalDateTime,
     ): Boolean {
-
-        return repository.existsTransactionsByEstablishmentAndDateRage(
-            startDate,
-            endDate,
-            amount,
-            establishment,
+        return repository.existsByAccountAndValueAndEstablishmentAndTransactionDateBetween(
+            startDate = startDate,
+            endDate = endDate,
+            accountId = clientId,
+            value = value,
+            establishment = establishment,
         )
     }
-
 }

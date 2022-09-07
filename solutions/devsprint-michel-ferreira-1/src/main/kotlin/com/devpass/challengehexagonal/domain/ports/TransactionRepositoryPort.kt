@@ -10,9 +10,9 @@ interface TransactionRepositoryPort {
         accountId: Long
     ): List<Transaction>
 
-    fun existsByClientIdAndAmountAndEstablishmentAndTransactionDateBetween(
+    fun getTransactionByDateRange(
         clientId: Long,
-        amount: BigDecimal,
+        value: BigDecimal,
         establishment: String,
         startDate: LocalDateTime,
         endDate: LocalDateTime,
