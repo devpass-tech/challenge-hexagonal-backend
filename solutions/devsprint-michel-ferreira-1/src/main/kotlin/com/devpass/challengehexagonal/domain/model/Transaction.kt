@@ -6,5 +6,6 @@ import java.time.LocalDateTime
 data class Transaction(
     val establishment: String,
     val value: BigDecimal,
-    val transactionDate: LocalDateTime = LocalDateTime.now()
+    val transactionDate: LocalDateTime = LocalDateTime.now(),
+    val location: Location? = null,
 )
