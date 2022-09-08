@@ -1,4 +1,4 @@
-package com.devpass.challengehexagonal.resources.repository.Location
+package com.devpass.challengehexagonal.resources.location
 
 data class LocationViaCEPResponse(
     val cep: String,

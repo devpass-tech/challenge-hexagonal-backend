@@ -1,8 +1,8 @@
-package com.devpass.challengehexagonal.resources.repository.Location
+package com.devpass.challengehexagonal.resources.location
 
 import com.devpass.challengehexagonal.domain.model.Location
 import com.devpass.challengehexagonal.domain.ports.LocationPort
-import com.devpass.challengehexagonal.resources.exceptions.ZipCodeException
+import com.devpass.challengehexagonal.domain.exceptions.ZipCodeException
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 

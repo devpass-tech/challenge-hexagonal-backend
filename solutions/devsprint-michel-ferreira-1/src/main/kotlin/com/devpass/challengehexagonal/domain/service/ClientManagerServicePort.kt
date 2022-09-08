@@ -4,5 +4,9 @@ import com.devpass.challengehexagonal.domain.model.Client
 
 interface ClientManagerServicePort {
 
-    fun getClient(clientId: Long) : Client
+    fun getClient(clientId: Long): Client
+
+    fun listClients(): List<Client>
+
+    fun saveClient(client: Client)
 }

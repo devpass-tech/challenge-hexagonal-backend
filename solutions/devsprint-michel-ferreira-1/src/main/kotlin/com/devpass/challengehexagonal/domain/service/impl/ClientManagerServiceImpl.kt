@@ -11,6 +11,15 @@ class ClientManagerServiceImpl(
 ) : ClientManagerServicePort {
 
     override fun getClient(clientId: Long): Client {
+        // lancar excecao ClientNotFoundException caso nao achar o client
+        TODO("Not yet implemented")
+    }
+
+    override fun listClients(): List<Client> {
+        TODO("Not yet implemented")
+    }
+
+    override fun saveClient(client: Client) {
         TODO("Not yet implemented")
     }
 }
