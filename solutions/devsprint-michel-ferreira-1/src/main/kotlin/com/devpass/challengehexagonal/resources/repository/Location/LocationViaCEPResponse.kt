@@ -1,6 +1,6 @@
-package com.devpass.challengehexagonal.resources.repository.zipCode
+package com.devpass.challengehexagonal.resources.repository.Location
 
-data class ZipCodeViaCEPResponse(
+data class LocationViaCEPResponse(
     val cep: String,
     val logradouro: String,
     val bairro: String,
