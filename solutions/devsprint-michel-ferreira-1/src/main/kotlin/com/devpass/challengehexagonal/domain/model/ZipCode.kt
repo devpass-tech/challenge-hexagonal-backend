@@ -1,4 +1,9 @@
 package com.devpass.challengehexagonal.domain.model
 
-class ZipCode {
-}
+data class ZipCode(
+    val city: String,
+    val district: String,
+    val postalCode: String,
+    val street: String,
+    val state: String
+)
