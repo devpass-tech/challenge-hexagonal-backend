@@ -53,4 +53,17 @@ class TransactionAdapterRepository(
         val startOfTheNextDay = date.plusDays(1).atStartOfDay()
         return repository.findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc(accountId, startOfDay, startOfTheNextDay)?.toDomain()
     }
+
+    override fun getTransactionByDateTime(
+        accountId: Long,
+        date: LocalDateTime,
+    ): List<Transaction> {
+        val startDate = date.toLocalDate().atStartOfDay()
+        val endDate = date.toLocalDate().plusDays(1).atStartOfDay()
+        return repository.findByAccountIdAndTransactionDateTime(
+            accountId = accountId,
+            startDateTime = startDate,
+            endDateTime = endDate,
+        ).map { it.toDomain() }
+    }
 }

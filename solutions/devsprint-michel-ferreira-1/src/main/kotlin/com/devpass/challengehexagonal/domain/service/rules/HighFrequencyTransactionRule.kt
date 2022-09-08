@@ -23,10 +23,25 @@ class HighFrequencyTransactionRule(
                 transaction.transactionDate
             )
 
-        if(transactions.size >= 3) {
+        if (transactions.size >= 3) {
             validationResult.violations.add(Violation.HIGH_FREQUENCY_TRANSACTION)
         }
 
+        return validationResult
+    }
+}
+
+class HighTransaction(
+    private val transactionRepositoryPort: TransactionRepositoryPort
+) {
+    fun validate(account: Account, transaction: Transaction): ValidationResult {
+        val validationResult = ValidationResult()
+        val transactions = transactionRepositoryPort.getTransactionByDateTime(account.id!!, transaction.transactionDate)
+        if (transactions.isEmpty()) {
+            if ((account.balance.toBigDecimal().multiply(0.80.toBigDecimal())) < transaction.value) {
+                validationResult.violations.add(Violation.HIGH_FREQUENCY_TRANSACTION)
+            }
+        }
         return validationResult
     }
 }
