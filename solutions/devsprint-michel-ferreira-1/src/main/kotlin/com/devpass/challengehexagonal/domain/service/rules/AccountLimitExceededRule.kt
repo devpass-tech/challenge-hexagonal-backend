@@ -4,7 +4,9 @@ import com.devpass.challengehexagonal.domain.model.Account
 import com.devpass.challengehexagonal.domain.model.Transaction
 import com.devpass.challengehexagonal.domain.model.ValidationResult
 import com.devpass.challengehexagonal.domain.model.Violation
+import org.springframework.stereotype.Service
 
+@Service
 class AccountLimitExceededRule {
     fun validate(account: Account, transaction: Transaction): ValidationResult {
         val validationResult = ValidationResult()
