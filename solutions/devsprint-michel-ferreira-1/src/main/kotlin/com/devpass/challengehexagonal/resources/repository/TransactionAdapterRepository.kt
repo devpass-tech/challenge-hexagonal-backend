@@ -54,7 +54,7 @@ class TransactionAdapterRepository(
         return repository.findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc(accountId, startOfDay, startOfTheNextDay)?.toDomain()
     }
 
-    override fun getTransactionByDateTime(
+    override fun getTransactionByDateTimeBetween(
         accountId: Long,
         date: LocalDateTime,
     ): List<Transaction> {
