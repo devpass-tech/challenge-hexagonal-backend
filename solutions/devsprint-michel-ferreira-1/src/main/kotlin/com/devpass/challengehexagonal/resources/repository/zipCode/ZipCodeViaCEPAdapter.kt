@@ -1,6 +1,6 @@
 package com.devpass.challengehexagonal.resources.repository.zipCode
 
-import com.devpass.challengehexagonal.domain.model.ZipCode
+import com.devpass.challengehexagonal.domain.model.Address
 import com.devpass.challengehexagonal.domain.ports.ZipCodePort
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
@@ -9,15 +9,15 @@ import org.springframework.web.client.RestTemplate
 class ZipCodeViaCEPAdapter(
     val restTemplate: RestTemplate
 ) : ZipCodePort {
-    override fun getZipCode(zipCode: String): ZipCode {
-        val zipCodeResponse: ZipCodeViaCEPResponse? = restTemplate.getForEntity(
+    override fun getZipCode(zipCode: String): Address {
+        val addressResponse: ZipCodeViaCEPResponse? = restTemplate.getForEntity(
             "https://viacep.com.br/ws?cep=$zipCode",
             ZipCodeViaCEPResponse::class.java
-        ).body ?: throw Exception("ZipCode not found")
+        ).body ?: throw Exception("Address not found")
 
 
-        val zipCode = zipCodeResponse?.let {
-            ZipCode(
+        val address = addressResponse?.let {
+            Address(
                 city = it.localidade,
                 district = it.bairro,
                 postalCode = it.cep,
@@ -25,6 +25,6 @@ class ZipCodeViaCEPAdapter(
                 state = it.uf
             )
         }
-        return zipCode ?: throw Exception("")
+        return address ?: throw Exception("")
     }
 }
