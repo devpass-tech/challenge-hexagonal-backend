@@ -7,14 +7,14 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class ClientAdapterRepository(
-    val repository: ClientSpringDataRepository
+    val repository: ClientSpringDataRepository,
 ) : ClientRepositoryPort {
     override fun getById(clientId: Long): Client? {
         TODO("Not yet implemented")
     }
 
     override fun list(): List<Client> {
-        TODO("Not yet implemented")
+        return repository.findAllBy().map { it.toDomain() }
     }
 
     override fun save(client: Client) {
