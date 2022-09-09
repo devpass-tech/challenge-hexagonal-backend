@@ -13,6 +13,7 @@ class TransactionServiceImpl(
 ) : TransactionServicePort {
 
     override fun processTransaction(clientId: Long, transaction: Transaction) {
+        // lancar excecao ClientNotFoundException caso nao achar o client
         TODO("Not yet implemented")
     }
 }
