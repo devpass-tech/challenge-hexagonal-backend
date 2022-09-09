@@ -29,7 +29,7 @@ interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Lo
             startOfTheNextDay: LocalDateTime,
     ): TransactionEntity?
 
-    fun findByAccountIdAndTransactionDateTime(
+    fun findByAccountIdAndTransactionDateTimeBetween(
         accountId: Long,
         startDateTime: LocalDateTime,
         endDateTime: LocalDateTime,
