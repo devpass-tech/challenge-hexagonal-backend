@@ -7,5 +7,5 @@ data class Transaction(
     val establishment: String,
     val value: BigDecimal,
     val transactionDate: LocalDateTime = LocalDateTime.now(),
-    val location: Location? = null,
+    var location: Location? = null,
 )
