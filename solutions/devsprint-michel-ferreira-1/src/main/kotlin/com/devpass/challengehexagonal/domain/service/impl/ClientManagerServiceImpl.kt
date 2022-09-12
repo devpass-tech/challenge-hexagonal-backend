@@ -1,5 +1,6 @@
 package com.devpass.challengehexagonal.domain.service.impl
 
+import com.devpass.challengehexagonal.domain.exceptions.ClientNotFoundException
 import com.devpass.challengehexagonal.domain.model.Client
 import com.devpass.challengehexagonal.domain.ports.ClientRepositoryPort
 import com.devpass.challengehexagonal.domain.service.ClientManagerServicePort
@@ -11,15 +12,14 @@ class ClientManagerServiceImpl(
 ) : ClientManagerServicePort {
 
     override fun getClient(clientId: Long): Client {
-        // lancar excecao ClientNotFoundException caso nao achar o client
-        TODO("Not yet implemented")
+        return clientRepositoryPort.getById(clientId) ?: throw ClientNotFoundException("Cliente não encontrado")
     }
 
     override fun listClients(): List<Client> {
-        TODO("Not yet implemented")
+        return clientRepositoryPort.list()
     }
 
     override fun saveClient(client: Client) {
-        TODO("Not yet implemented")
+        return clientRepositoryPort.save(client)
     }
 }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 
 @Repository
 class TransactionAdapterRepository(
-    private val repository: TransactionSpringDataRepository,
+        private val repository: TransactionSpringDataRepository,
 ) : TransactionRepositoryPort {
 
     override fun getTransactionsByAccount(accountId: Long): List<Transaction> {
@@ -18,33 +18,33 @@ class TransactionAdapterRepository(
     }
 
     override fun getTransactionByDateRange(
-        clientId: Long,
-        value: BigDecimal,
-        establishment: String,
-        startDate: LocalDateTime,
-        endDate: LocalDateTime,
+            clientId: Long,
+            value: BigDecimal,
+            establishment: String,
+            startDate: LocalDateTime,
+            endDate: LocalDateTime,
     ): Boolean {
 
         return repository.existsByAccountAndValueAndEstablishmentAndTransactionDateBetween(
-            startDate = startDate,
-            endDate = endDate,
-            accountId = clientId,
-            value = value,
-            establishment = establishment,
+                startDate = startDate,
+                endDate = endDate,
+                accountId = clientId,
+                value = value,
+                establishment = establishment,
         )
     }
 
     override fun getTransactionByDateRange(
-        accountId: Long,
-        establishment: String,
-        startDate: LocalDateTime,
-        endDate: LocalDateTime,
+            accountId: Long,
+            establishment: String,
+            startDate: LocalDateTime,
+            endDate: LocalDateTime,
     ): List<Transaction> {
         return repository.findByAccountIdAndEstablishmentAndTransactionDateBetween(
-            accountId = accountId,
-            establishment = establishment,
-            startDateTime = startDate,
-            endDateTime = endDate,
+                accountId = accountId,
+                establishment = establishment,
+                startDateTime = startDate,
+                endDateTime = endDate,
         ).map { it.toDomain() }
     }
 
