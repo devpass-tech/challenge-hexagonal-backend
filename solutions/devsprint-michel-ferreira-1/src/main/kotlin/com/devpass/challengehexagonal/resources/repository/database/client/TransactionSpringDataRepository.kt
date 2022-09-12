@@ -15,7 +15,7 @@ interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Lo
         establishment: String,
         startDate: LocalDateTime,
         endDate: LocalDateTime,
-    ) : Boolean
+    ): Boolean
 
     fun findByAccountIdAndEstablishmentAndTransactionDateBetween(
         accountId: Long,
@@ -24,10 +24,16 @@ interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Lo
         endDateTime: LocalDateTime,
     ): List<TransactionEntity>
 
-    fun findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc (
-            accountId: Long,
-            date: LocalDateTime,
-            startOfTheNextDay: LocalDateTime,
+    fun findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc(
+        accountId: Long,
+        date: LocalDateTime,
+        startOfTheNextDay: LocalDateTime,
     ): TransactionEntity?
+
+    fun findByAccountIdAndTransactionDateTimeBetween(
+        accountId: Long,
+        startDateTime: LocalDateTime,
+        endDateTime: LocalDateTime,
+    ): List<TransactionEntity>
 }
 
