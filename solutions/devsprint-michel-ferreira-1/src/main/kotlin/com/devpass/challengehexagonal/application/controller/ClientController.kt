@@ -17,7 +17,7 @@ class ClientController(
     fun createNewClient(
         @RequestBody clientDtoRequest : ClientDtoRequest
     ) : ResponseEntity<String> {
-        clientManagerServicePort.createNewClient(clientDtoRequest)
+        clientManagerServicePort.saveClient(client:Client)
         return ResponseEntity.ok("Cliente criado com sucesso!")
     }
 }

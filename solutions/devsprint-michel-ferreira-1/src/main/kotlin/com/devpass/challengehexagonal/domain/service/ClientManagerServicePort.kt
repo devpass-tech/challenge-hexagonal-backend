@@ -10,6 +10,4 @@ interface ClientManagerServicePort {
     fun listClients(): List<Client>
 
     fun saveClient(client: Client)
-
-    fun createNewClient(client: ClientDtoRequest)
 }
