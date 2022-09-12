@@ -16,7 +16,7 @@ data class ClientEntity(
     @OneToOne(cascade = [CascadeType.ALL])
     val account: AccountEntity,
 ) {
-    fun toDomain() = Client(name = this.name, birthDate = this.birthDate)
+    fun toDomain() = Client(name = this.name, birthDate = this.birthDate, account = this.account.toDomain())
 }
 
 

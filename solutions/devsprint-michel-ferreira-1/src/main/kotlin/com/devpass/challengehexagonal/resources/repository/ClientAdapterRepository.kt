@@ -14,7 +14,7 @@ class ClientAdapterRepository(
     }
 
     override fun list(): List<Client> {
-        return repository.findAllBy().map { it.toDomain() }
+        return repository.findAll().map { it.toDomain() }
     }
 
     override fun save(client: Client) {

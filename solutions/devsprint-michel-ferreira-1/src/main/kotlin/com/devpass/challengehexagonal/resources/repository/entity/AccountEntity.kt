@@ -9,7 +9,7 @@ data class AccountEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    val accountNumber: Int = null,
+    val accountNumber: Long,
 
     var balance: BigDecimal,
 ) {

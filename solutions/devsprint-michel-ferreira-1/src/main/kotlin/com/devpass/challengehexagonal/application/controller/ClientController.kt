@@ -1,8 +1,7 @@
 package com.devpass.challengehexagonal.application.controller
 
-import com.devpass.challengehexagonal.domain.model.Client
+import com.devpass.challengehexagonal.application.DTO.ClientResponseDTO
 import com.devpass.challengehexagonal.domain.service.ClientManagerServicePort
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -13,8 +12,8 @@ class ClientController(
     val clientManagerServicePort: ClientManagerServicePort,
 ) {
     @GetMapping
-    fun listAllClients(): ResponseEntity<List<Client>> {
+    fun listAllClients(): List<ClientResponseDTO> {
         val listOfClients = clientManagerServicePort.listClients()
-        return ResponseEntity.ok(listOfClients)
+        return listOfClients.map { ClientResponseDTO(it) }
     }
 }
