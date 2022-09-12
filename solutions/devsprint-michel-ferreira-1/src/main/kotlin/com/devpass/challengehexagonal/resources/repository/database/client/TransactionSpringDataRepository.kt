@@ -3,6 +3,7 @@ package com.devpass.challengehexagonal.resources.repository.database.client
 import com.devpass.challengehexagonal.resources.repository.entity.TransactionEntity
 import org.springframework.data.repository.CrudRepository
 import java.math.BigDecimal
+import java.time.LocalDateTime
 
 interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Long> {
 
@@ -14,7 +15,7 @@ interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Lo
         establishment: String,
         startDate: LocalDateTime,
         endDate: LocalDateTime,
-    ) : Boolean
+    ): Boolean
 
     fun findByAccountIdAndEstablishmentAndTransactionDateBetween(
         accountId: Long,
@@ -23,10 +24,10 @@ interface TransactionSpringDataRepository : CrudRepository<TransactionEntity, Lo
         endDateTime: LocalDateTime,
     ): List<TransactionEntity>
 
-    fun findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc (
-            accountId: Long,
-            date: LocalDateTime,
-            startOfTheNextDay: LocalDateTime,
+    fun findTopByAccountIdAndTransactionDateBetweenOrderByTransactionDateAsc(
+        accountId: Long,
+        date: LocalDateTime,
+        startOfTheNextDay: LocalDateTime,
     ): TransactionEntity?
 
     fun findByAccountIdAndTransactionDateTimeBetween(

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class ClientManagerServiceImpl(
-    private val clientRepositoryPort: ClientRepositoryPort
+    private val clientRepositoryPort: ClientRepositoryPort,
 ) : ClientManagerServicePort {
 
     override fun getClient(clientId: Long): Client {
@@ -16,7 +16,7 @@ class ClientManagerServiceImpl(
     }
 
     override fun listClients(): List<Client> {
-        TODO("Not yet implemented")
+        return clientRepositoryPort.list()
     }
 
     override fun saveClient(client: Client) {
