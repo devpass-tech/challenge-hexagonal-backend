@@ -30,4 +30,9 @@ interface TransactionRepositoryPort {
             accountId: Long,
             date: LocalDate,
     ): Transaction?
+
+    fun getTransactionByDateTime(
+        accountId: Long,
+        dateTime: LocalDateTime,
+    ): List<Transaction>
 }

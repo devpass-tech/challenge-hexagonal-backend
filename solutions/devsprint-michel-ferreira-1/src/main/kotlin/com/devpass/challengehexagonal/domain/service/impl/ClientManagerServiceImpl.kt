@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class ClientManagerServiceImpl(
-    private val clientRepositoryPort: ClientRepositoryPort
+    private val clientRepositoryPort: ClientRepositoryPort,
 ) : ClientManagerServicePort {
 
     override fun getClient(clientId: Long): Client {

@@ -1,5 +1,6 @@
 package com.devpass.challengehexagonal.domain.service
 
+import com.devpass.challengehexagonal.application.controller.dto.ClientDtoRequest
 import com.devpass.challengehexagonal.domain.model.Client
 
 interface ClientManagerServicePort {
