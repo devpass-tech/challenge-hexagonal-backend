@@ -1,5 +1,7 @@
 package io.devpass.creditcard.domain.extentions
 
+import io.devpass.creditcard.domain.exceptions.OwnedException
+
 fun String.validateAsCPF(): Boolean {
     var ownerCPF = this.filter { it.isDigit() }.map {
         it.toString().toInt()
@@ -11,4 +13,13 @@ fun String.validateAsCPF(): Boolean {
         return false
     }
     return true
+}
+fun String.notAValidCPF(): OwnedException {
+    var invalidCPF = this.filter { it.isDigit() }.map {
+        it.toString().toInt()
+    }
+    if(invalidCPF.isEmpty()) {
+        throw Exception("O campo do CPF é obrigatório.")
+    }
+    return OwnedException("O CPF inserido é inválido.")
 }
