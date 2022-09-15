@@ -1,4 +1,4 @@
-package io.devpass.creditcard.domain.objects
+package io.devpass.creditcard.domain.creditcard
 
 import java.util.Random
 
