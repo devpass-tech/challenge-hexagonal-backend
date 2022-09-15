@@ -5,14 +5,12 @@ import java.time.LocalDateTime
 
 data class CreditCardInvoiceEntity(
     val id: String,
-    val owner: String,
-    val number: String,
-    val security_code: String,
-    val printed_name: String,
-    val credit_limit: Double,
-    val available_credit_limit: Double,
+    val credit_card: String,
+    val month: Int,
+    val year: Int,
+    val value: Double,
     @CreationTimestamp
     val created_at: LocalDateTime = LocalDateTime.now(),
     @CreationTimestamp
-    val updated_at: LocalDateTime = LocalDateTime.now()
+    val pait_at: LocalDateTime? = LocalDateTime.now()
 )
