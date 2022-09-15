@@ -20,7 +20,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7001/account-management/create",
+					"raw": "http://localhost:7445/account-management/create",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -40,7 +40,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7001/account-management/balance/:accountId",
+					"raw": "http://localhost:7445/account-management/balance/:accountId",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -67,7 +67,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7001/account-management/balance-by-tax-id/:taxId",
+					"raw": "http://localhost:7445/account-management/balance-by-tax-id/:taxId",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -103,7 +103,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7001/account-management/deposit",
+					"raw": "http://localhost:7445/account-management/deposit",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -132,7 +132,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7001/account-management/withdraw",
+					"raw": "http://localhost:7445/account-management/withdraw",
 					"protocol": "http",
 					"host": [
 						"localhost"
