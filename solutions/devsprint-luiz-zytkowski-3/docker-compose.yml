@@ -12,12 +12,12 @@ services:
   anti-fraud:
     image: incognitowski/devpass-backend-antifraud
     ports:
-      - '7000:7000'
+      - '7444:7000'
     expose:
-      - '7000'
+      - '7444'
   account-management:
     image: incognitowski/devpass-backend-accountmanagement
     ports:
-      - '7001:7001'
+      - '7445:7001'
     expose:
-      - '7001'
+      - '7445'

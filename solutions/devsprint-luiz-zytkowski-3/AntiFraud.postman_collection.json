@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7000/anti-fraud/credit-card-eligibility/:cpf",
+					"raw": "http://localhost:7444/anti-fraud/credit-card-eligibility/:cpf",
 					"protocol": "http",
 					"host": [
 						"localhost"

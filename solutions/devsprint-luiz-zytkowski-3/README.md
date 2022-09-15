@@ -93,12 +93,12 @@ Esse service se comunica com 2 micros-services já mapeados para rodar junto do 
 
 #### Anti-fraud - Consultando eligibilidade para cartão de crédito
 ```shell
-curl --location --request GET 'http://localhost:7000/anti-fraud/credit-card-eligibility/{taxId}'
+curl --location --request GET 'http://localhost:7444/anti-fraud/credit-card-eligibility/{taxId}'
 ```
 
 #### Account-manager - Criando conta
 ```shell
-curl --location --request POST 'http://localhost:7001/account-management/create' \
+curl --location --request POST 'http://localhost:7445/account-management/create' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "taxId": "{taxId}"
@@ -107,17 +107,17 @@ curl --location --request POST 'http://localhost:7001/account-management/create'
 
 #### Account-manager - Consultando saldo por ID de conta
 ```shell
-curl --location --request GET 'http://localhost:7001/account-management/balance/{accountId}'
+curl --location --request GET 'http://localhost:7445/account-management/balance/{accountId}'
 ```
 
 #### Account-manager - Consultando saldo por CPF
 ```shell
-curl --location --request GET 'http://localhost:7001/account-management/balance-by-tax-id/{taxId}'
+curl --location --request GET 'http://localhost:7445/account-management/balance-by-tax-id/{taxId}'
 ```
 
 #### Account-manager - Depositando dinheiro em conta
 ```shell
-curl --location --request PUT 'http://localhost:7001/account-management/deposit' \
+curl --location --request PUT 'http://localhost:7445/account-management/deposit' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "accountId": "{accountId}",
@@ -127,7 +127,7 @@ curl --location --request PUT 'http://localhost:7001/account-management/deposit'
 
 #### Account-manager - Retirando dinheiro de uma conta
 ```shell
-curl --location --request PUT 'http://localhost:7001/account-management/withdraw' \
+curl --location --request PUT 'http://localhost:7445/account-management/withdraw' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "accountId": "{accountId}",
