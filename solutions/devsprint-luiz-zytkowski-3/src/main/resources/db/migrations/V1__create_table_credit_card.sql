@@ -8,5 +8,4 @@ CREATE TABLE credit_card
     credit_limit           DOUBLE                  NOT NULL,
     available_credit_limit DOUBLE                  NOT NULL,
     created_at             TIMESTAMP               NOT NULL,
-    updated_at             TIMESTAMP               NOT NULL
 );
