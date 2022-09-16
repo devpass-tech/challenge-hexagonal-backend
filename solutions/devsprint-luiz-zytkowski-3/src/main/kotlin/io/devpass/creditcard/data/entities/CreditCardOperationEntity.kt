@@ -1,5 +1,6 @@
 package io.devpass.creditcard.data.entities
 
+import io.devpass.creditcard.domain.objects.CreditCardOperation
 import org.hibernate.annotations.CreationTimestamp
 import java.time.LocalDateTime
 import javax.persistence.Entity
@@ -15,4 +16,15 @@ data class CreditCardOperationEntity(
     var description: String,
     @CreationTimestamp
     var createdAt: LocalDateTime = LocalDateTime.now(),
-)
+) {
+    fun toCreditCardOperation(): CreditCardOperation {
+        return CreditCardOperation(
+            this.id,
+            this.credit_card,
+            this.type,
+            this.value,
+            this.description,
+            this.createdAt
+        )
+    }
+}
