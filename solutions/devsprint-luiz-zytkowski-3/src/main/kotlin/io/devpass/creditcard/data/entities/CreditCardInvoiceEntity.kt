@@ -6,13 +6,12 @@ import javax.persistence.Id
 
 data class CreditCardInvoiceEntity(
     @Id
-    val id: String,
-    val creditCard: String,
-    val month: Int,
-    val year: Int,
-    val value: Double,
+    var id: String,
+    var creditCard: String,
+    var month: Int,
+    var year: Int,
+    var value: Double,
     @CreationTimestamp
-    val createdAt: LocalDateTime = LocalDateTime.now(),
-    @CreationTimestamp
-    val paitAt: LocalDateTime? = LocalDateTime.now()
+    var createdAt: LocalDateTime = LocalDateTime.now(),
+    var paidAt: LocalDateTime? = LocalDateTime.now()
 )
