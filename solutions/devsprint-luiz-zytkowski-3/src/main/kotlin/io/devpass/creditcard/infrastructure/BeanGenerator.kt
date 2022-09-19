@@ -1,6 +1,7 @@
 package io.devpass.creditcard.infrastructure
 
 import io.devpass.creditcard.data.CreditCardDAO
+import io.devpass.creditcard.data.repositories.CreditCardRepository
 import io.devpass.creditcard.data.CreditCardOperationDAO
 import io.devpass.creditcard.data.repositories.CreditCardOperationRepository
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
@@ -16,8 +17,10 @@ import org.springframework.context.annotation.Configuration
 class BeanGenerator {
 
     @Bean
-    fun creditCardDAO(): ICreditCardDAO {
-        return CreditCardDAO()
+    fun creditCardDAO(
+        creditCardRepository: CreditCardRepository
+    ): ICreditCardDAO {
+        return CreditCardDAO(creditCardRepository)
     }
 
     @Bean
