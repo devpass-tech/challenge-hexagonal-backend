@@ -18,13 +18,13 @@ data class CreditCardInvoiceEntity(
 ) {
     fun toCreditCardInvoice(): CreditCardInvoice {
         return CreditCardInvoice(
-            id = this.id,
-            creditCard = this.creditCard,
-            month = this.month,
-            year = this.year,
-            value = this.value,
-            createdAt = this.createdAt,
-            paidAt = this.paidAt
+            this.id,
+            this.creditCard,
+            this.month,
+            this.year,
+            this.value,
+            this.createdAt,
+            this.paidAt
         )
     }
 }
