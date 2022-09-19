@@ -19,11 +19,12 @@ data class CreditCardOperationEntity(
 ) {
     fun toCreditCardOperation(): CreditCardOperation {
         return CreditCardOperation(
-            id = this.id,
-            credit_card = this.credit_card,
-            type = this.type,
-            value = this.value,
-            description = this.description
+            this.id,
+            this.credit_card,
+            this.type,
+            this.value,
+            this.description,
+            this.createdAt
         )
     }
 }
