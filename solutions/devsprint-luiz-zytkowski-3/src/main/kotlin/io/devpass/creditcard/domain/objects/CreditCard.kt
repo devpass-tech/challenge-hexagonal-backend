@@ -6,6 +6,6 @@ data class CreditCard(
     var number: String,
     var securityCode: String,
     var printedName: String,
-    var credit_limit: Double,
+    var creditLimit: Double,
     var availableCreditLimit: Double,
 )

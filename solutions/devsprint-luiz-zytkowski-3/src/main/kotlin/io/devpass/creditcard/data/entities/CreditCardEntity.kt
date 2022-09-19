@@ -14,7 +14,7 @@ data class CreditCardEntity(
         var number: String,
         var securityCode: String,
         var printedName: String,
-        var credit_limit: Double,
+        var creditLimit: Double,
         var availableCreditLimit: Double,
         @CreationTimestamp
         var createdAt: LocalDateTime = LocalDateTime.now(),
@@ -28,7 +28,7 @@ data class CreditCardEntity(
                 this.number,
                 this.securityCode,
                 this.printedName,
-                this.credit_limit,
+                this.creditLimit,
                 this.availableCreditLimit,
         )
     }
