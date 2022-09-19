@@ -2,11 +2,12 @@ package io.devpass.creditcard.domain.objects
 
 import java.time.LocalDateTime
 
-data class CreditCardOperation(
+data class CreditCardInvoice(
     var id: String,
     var creditCard: String,
-    var type: String,
+    var month: Int,
+    var year: Int,
     var value: Double,
-    var description: String,
-    var createdAt: LocalDateTime = LocalDateTime.now(),
-)
+    var createdAt: LocalDateTime,
+    var paidAt: LocalDateTime?
+) 

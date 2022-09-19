@@ -1,8 +1,8 @@
 package io.devpass.creditcard.data.entities
 
 import io.devpass.creditcard.domain.objects.CreditCardOperation
-import org.hibernate.annotations.CreationTimestamp
 import java.time.LocalDateTime
+import org.hibernate.annotations.CreationTimestamp
 import javax.persistence.Entity
 import javax.persistence.Id
 
