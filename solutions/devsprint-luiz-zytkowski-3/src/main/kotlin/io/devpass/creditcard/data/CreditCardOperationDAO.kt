@@ -5,10 +5,11 @@ import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
 import io.devpass.creditcard.domain.objects.CreditCardOperation
 
 class CreditCardOperationDAO(
-    val creditCardOperationRepository: CreditCardOperationRepository,
-): ICreditCardOperationDAO {
-    override fun getById(id: String): CreditCardOperation {
-        return creditCardOperationRepository.findById(id).toCreditCardOperation()
+    private val creditCardOperationRepository: CreditCardOperationRepository,
+) : ICreditCardOperationDAO {
+    override fun getById(id: String): CreditCardOperation? {
+        val creditCardOperationEntity = creditCardOperationRepository.findById(id)
+        return if (creditCardOperationEntity.isPresent) creditCardOperationEntity.get().toCreditCardOperation() else null
     }
 
 }

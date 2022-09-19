@@ -1,8 +1,8 @@
 package io.devpass.creditcard.dataaccess
 
-import io.devpass.creditcard.data.CreditCardOperationDAO
+import io.devpass.creditcard.domain.objects.CreditCardOperation
 
 interface ICreditCardOperationDAO {
 
-    fun getById(id: String): CreditCardOperationDAO
+    fun getById(id: String): CreditCardOperation?
 }

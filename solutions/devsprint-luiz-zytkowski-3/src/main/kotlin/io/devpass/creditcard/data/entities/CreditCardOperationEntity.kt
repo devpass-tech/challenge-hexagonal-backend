@@ -1,6 +1,5 @@
 package io.devpass.creditcard.data.entities
 
-import io.devpass.creditcard.data.CreditCardOperationDAO
 import io.devpass.creditcard.domain.objects.CreditCardOperation
 import java.time.LocalDateTime
 import org.hibernate.annotations.CreationTimestamp
@@ -19,6 +18,12 @@ data class CreditCardOperationEntity(
     var createdAt: LocalDateTime = LocalDateTime.now(),
 ) {
     fun toCreditCardOperation(): CreditCardOperation {
-        return CreditCardOperation(id = this.id, credit_card=this.credit_card, type=this.type,value=this.value,description=this.description)
+        return CreditCardOperation(
+            id = this.id,
+            credit_card = this.credit_card,
+            type = this.type,
+            value = this.value,
+            description = this.description
+        )
     }
 }
