@@ -3,7 +3,6 @@ package io.devpass.creditcard.data.entities
 import io.devpass.creditcard.domain.objects.CreditCard
 import java.time.LocalDateTime
 import org.hibernate.annotations.CreationTimestamp
-import org.jetbrains.annotations.NotNull
 import javax.persistence.Entity
 import javax.persistence.Id
 

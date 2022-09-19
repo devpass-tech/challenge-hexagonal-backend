@@ -20,7 +20,7 @@ class BeanGenerator {
     fun creditCardDAO(
         creditCardRepository: CreditCardRepository
     ): ICreditCardDAO {
-        return CreditCardDAO()
+        return CreditCardDAO(creditCardRepository)
     }
 
     @Bean
