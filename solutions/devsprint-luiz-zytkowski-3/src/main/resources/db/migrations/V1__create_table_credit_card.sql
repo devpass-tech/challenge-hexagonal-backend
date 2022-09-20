@@ -7,5 +7,6 @@ CREATE TABLE credit_card
     printed_name           VARCHAR(25)             NOT NULL,
     credit_limit           DOUBLE                  NOT NULL,
     available_credit_limit DOUBLE                  NOT NULL,
-    created_at             TIMESTAMP               NOT NULL
+    created_at             DATETIME                NOT NULL,
+    updated_at             DATETIME                NOT NULL
 );

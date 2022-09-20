@@ -5,6 +5,6 @@ CREATE TABLE credit_card_invoice
     month       INT                     NOT NULL,
     year        INT                     NOT NULL,
     value       DOUBLE                  NOT NULL,
-    created_at  TIMESTAMP               NOT NULL,
-    paid_at     TIMESTAMP,
+    created_at  DATETIME                NOT NULL,
+    paid_at     DATETIME
 );
