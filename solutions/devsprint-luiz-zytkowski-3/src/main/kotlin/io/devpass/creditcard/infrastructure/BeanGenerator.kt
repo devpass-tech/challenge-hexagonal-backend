@@ -3,15 +3,21 @@ package io.devpass.creditcard.infrastructure
 import io.devpass.creditcard.data.AccountManagementGateway
 import io.devpass.creditcard.data.AntiFraudGateway
 import io.devpass.creditcard.data.CreditCardDAO
+import io.devpass.creditcard.data.CreditCardInvoiceDAO
+import io.devpass.creditcard.data.repositories.CreditCardRepository
 import io.devpass.creditcard.data.CreditCardOperationDAO
+import io.devpass.creditcard.data.repositories.CreditCardInvoiceRepository
 import io.devpass.creditcard.data.repositories.CreditCardOperationRepository
 import io.devpass.creditcard.data.repositories.CreditCardRepository
 import io.devpass.creditcard.dataaccess.IAccountManagementGateway
 import io.devpass.creditcard.dataaccess.IAntiFraudGateway
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
+import io.devpass.creditcard.dataaccess.ICreditCardInvoiceDAO
 import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
+import io.devpass.creditcard.domain.CreditCardInvoiceService
 import io.devpass.creditcard.domain.CreditCardOperationService
 import io.devpass.creditcard.domain.CreditCardService
+import io.devpass.creditcard.domainaccess.ICreditCardInvoiceServiceAdapter
 import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
 import io.devpass.creditcard.domainaccess.ICreditCardServiceAdapter
 import org.springframework.context.annotation.Bean
@@ -47,6 +53,18 @@ class BeanGenerator {
         return CreditCardOperationService(creditCardOperationDAO)
     }
 
+    @Bean
+    fun creditCardInvoiceDAO(creditCardInvoiceRepository: CreditCardInvoiceRepository): ICreditCardInvoiceDAO {
+        return CreditCardInvoiceDAO(creditCardInvoiceRepository)
+    }
+
+    @Bean
+    fun creditCardInvoiceServiceAdapter(
+        creditCardInvoiceDAO: ICreditCardInvoiceDAO,
+    ): ICreditCardInvoiceServiceAdapter {
+        return CreditCardInvoiceService(creditCardInvoiceDAO)
+    }
+    
     @Bean
     fun antiFraudGateway(): IAntiFraudGateway {
         return AntiFraudGateway()
