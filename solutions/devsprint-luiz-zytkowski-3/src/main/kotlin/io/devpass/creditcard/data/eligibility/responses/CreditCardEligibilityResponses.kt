@@ -1,4 +1,4 @@
-package io.devpass.creditcard.domain.objects.eligibility.responses
+package io.devpass.creditcard.data.eligibility.responses
 
 import io.devpass.creditcard.domain.objects.eligibility.CreditCardEligibility
 
@@ -14,5 +14,4 @@ data class CreditCardEligibilityResponses(
             proposedLimit = this.proposedLimit
         )
     }
-
 }
