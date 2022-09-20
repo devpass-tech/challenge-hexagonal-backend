@@ -1,6 +1,6 @@
 package io.devpass.creditcard.domain.objects.eligibility
 
-class CreditCardEligibility(
+data class CreditCardEligibility(
     val shouldHaveCreditCard: Boolean,
     val proposedLimit: Double?
 )
