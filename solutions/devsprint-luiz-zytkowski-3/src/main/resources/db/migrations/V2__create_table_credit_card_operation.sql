@@ -4,5 +4,5 @@ CREATE TABLE credit_card_operation (
     type VARCHAR(10) NOT NULL,
     value DOUBLE NOT NULL,
     description TEXT NOT NULL,
-    created_at TIMESTAMP NOT NULL
+    created_at DATETIME NOT NULL
 );
