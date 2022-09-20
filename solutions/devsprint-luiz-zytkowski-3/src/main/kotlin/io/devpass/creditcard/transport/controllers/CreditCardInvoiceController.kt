@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("creditCardInvoice")
+@RequestMapping("credit-card-invoices")
 class CreditCardInvoiceController(
     private val creditCardInvoiceServiceAdapter: ICreditCardInvoiceServiceAdapter
 ) {
