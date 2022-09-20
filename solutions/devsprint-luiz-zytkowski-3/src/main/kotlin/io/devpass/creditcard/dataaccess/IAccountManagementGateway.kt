@@ -1,3 +1,3 @@
 package io.devpass.creditcard.dataaccess
 
-interface IAccountManagementGateWay {}
+interface IAccountManagementGateway {}

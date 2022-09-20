@@ -3,9 +3,9 @@ package io.devpass.creditcard.infrastructure
 import io.devpass.creditcard.data.CreditCardDAO
 import io.devpass.creditcard.data.repositories.CreditCardRepository
 import io.devpass.creditcard.data.CreditCardOperationDAO
-import io.devpass.creditcard.data.gateway.AccountManagementGateWay
+import io.devpass.creditcard.data.gateway.AccountManagementGateway
 import io.devpass.creditcard.data.repositories.CreditCardOperationRepository
-import io.devpass.creditcard.dataaccess.IAccountManagementGateWay
+import io.devpass.creditcard.dataaccess.IAccountManagementGateway
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
 import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
 import io.devpass.creditcard.domain.CreditCardOperationService
@@ -45,7 +45,7 @@ class BeanGenerator {
     }
 
     @Bean
-    fun accountManagementGateway() : IAccountManagementGateWay {
-        return AccountManagementGateWay()
+    fun accountManagementGateway() : IAccountManagementGateway {
+        return AccountManagementGateway()
     }
 }
