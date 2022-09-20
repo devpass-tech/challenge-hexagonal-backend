@@ -1,4 +1,4 @@
-package io.devpass.creditcard.domain.objects.eligibility
+package io.devpass.creditcard.domain.objects.antifraud
 
 data class CreditCardEligibility(
     val shouldHaveCreditCard: Boolean,
