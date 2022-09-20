@@ -39,4 +39,12 @@ class ArchTest {
             .allowEmptyShould(true)
             .check(classesToCheck)
     }
+
+    @Test
+    fun `Nothing on data should depend on infrastructure`() {
+        noClasses().that().resideInAPackage("..data..")
+            .should().dependOnClassesThat().resideInAPackage("..infrastructure..")
+            .allowEmptyShould(true)
+            .check(classesToCheck)
+    }
 }
