@@ -1,9 +1,11 @@
 package io.devpass.creditcard.infrastructure
 
+import io.devpass.creditcard.data.AccountManagementGateway
 import io.devpass.creditcard.data.CreditCardDAO
 import io.devpass.creditcard.data.repositories.CreditCardRepository
 import io.devpass.creditcard.data.CreditCardOperationDAO
 import io.devpass.creditcard.data.repositories.CreditCardOperationRepository
+import io.devpass.creditcard.dataaccess.IAccountManagementGateway
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
 import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
 import io.devpass.creditcard.domain.CreditCardOperationService
@@ -18,7 +20,7 @@ class BeanGenerator {
 
     @Bean
     fun creditCardDAO(
-        creditCardRepository: CreditCardRepository
+        creditCardRepository: CreditCardRepository,
     ): ICreditCardDAO {
         return CreditCardDAO(creditCardRepository)
     }
@@ -40,5 +42,10 @@ class BeanGenerator {
         creditCardOperationDAO: ICreditCardOperationDAO,
     ): ICreditCardOperationServiceAdapter {
         return CreditCardOperationService(creditCardOperationDAO)
+    }
+
+    @Bean
+    fun accountManagementGateway(): IAccountManagementGateway {
+        return AccountManagementGateway()
     }
 }
