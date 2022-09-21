@@ -10,7 +10,7 @@ import io.devpass.creditcard.dataaccess.IAccountManagementGateway
 import io.devpass.creditcard.domain.exceptions.GatewayException
 import io.devpass.creditcard.domain.objects.accountmanagement.Account
 import io.devpass.creditcard.domain.objects.accountmanagement.Transaction
-import io.devpass.creditcard.domain.objects.http.DefaultHttpMessage
+import io.devpass.creditcard.domain.objects.ActionResponse
 
 
 class AccountManagementGateway(
@@ -28,8 +28,8 @@ class AccountManagementGateway(
         }
     }
 
-    override fun withdraw(transaction: Transaction): DefaultHttpMessage {
-        val (_, result, response) = Fuel.post("$baseUrl/account-management/withdraw").objectBody(transaction)
+    override fun withdraw(transaction: Transaction): ActionResponse {
+        val (_, result, response) = Fuel.put("$baseUrl/account-management/withdraw").objectBody(transaction)
             .responseObject<DefaultHttpResponse>(jacksonDeserializerOf())
         return if (result.isSuccessful) {
             response.get().toDefaultHttpResponse()
