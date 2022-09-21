@@ -62,7 +62,7 @@ class BeanGenerator {
 
     @Bean
     fun antiFraudGateway(): IAntiFraudGateway {
-        return AntiFraudGateway("http://localhost:7445")
+        return AntiFraudGateway("http://localhost:7444")
     }
 
     @Bean
