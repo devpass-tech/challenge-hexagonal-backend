@@ -47,7 +47,7 @@ class BeanGenerator {
     ): ICreditCardOperationServiceAdapter {
         return CreditCardOperationService(creditCardOperationDAO)
     }
-    
+
     @Bean
     fun creditCardInvoiceDAO(creditCardInvoiceRepository: CreditCardInvoiceRepository): ICreditCardInvoiceDAO {
         return CreditCardInvoiceDAO(creditCardInvoiceRepository)
@@ -59,10 +59,10 @@ class BeanGenerator {
     ): ICreditCardInvoiceServiceAdapter {
         return CreditCardInvoiceService(creditCardInvoiceDAO)
     }
-    
+
     @Bean
     fun antiFraudGateway(): IAntiFraudGateway {
-        return AntiFraudGateway()
+        return AntiFraudGateway("http://localhost:7445")
     }
 
     @Bean
