@@ -36,6 +36,7 @@ class AccountManagementGateway(
             response.get().toDefaultHttpResponse()
         } else {
             throw GatewayException(response.get().toDefaultHttpResponse().message)
+        }
     }
     
     override fun createAccount(accountCreationRequest: AccountCreationRequest): Account {
