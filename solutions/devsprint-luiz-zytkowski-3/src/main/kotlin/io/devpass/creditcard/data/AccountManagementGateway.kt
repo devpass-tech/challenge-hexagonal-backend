@@ -5,7 +5,7 @@ import com.github.kittinunf.fuel.core.isSuccessful
 import com.github.kittinunf.fuel.jackson.jacksonDeserializerOf
 import com.github.kittinunf.fuel.jackson.objectBody
 import io.devpass.creditcard.data.accountmanagement.response.AccountResponse
-import io.devpass.creditcard.data.accountmanagement.response.requests.AccountCreationRequest
+import io.devpass.creditcard.data.accountmanagement.request.AccountCreationRequest
 import io.devpass.creditcard.dataaccess.IAccountManagementGateway
 import io.devpass.creditcard.domain.exceptions.GatewayException
 import io.devpass.creditcard.domain.objects.accountmanagement.Account

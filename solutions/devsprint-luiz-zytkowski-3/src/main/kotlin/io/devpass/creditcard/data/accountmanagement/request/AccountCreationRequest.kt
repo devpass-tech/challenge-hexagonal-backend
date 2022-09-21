@@ -1,4 +1,4 @@
-package io.devpass.creditcard.data.accountmanagement.response.requests
+package io.devpass.creditcard.data.accountmanagement.request
 
 data class AccountCreationRequest(
         val taxId: String,
