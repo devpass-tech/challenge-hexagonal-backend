@@ -34,4 +34,15 @@ class AccountManagementGateway(
             response.get().toAccount()
         } else throw GatewayException("Não foi possível cadastrar sua conta")
     }
+    
+    override fun getAccountById(accountId: String) : Account {
+        val (_, result, response) = Fuel
+                .get("$baseUrl/account-management/balance/$accountId")
+                .responseObject<AccountResponse>(jacksonDeserializerOf())
+        return if (result.isSuccessful) {
+            response.get().toAccount()
+        } else {
+            throw GatewayException("Erro na busca da conta pelo ID: $accountId")
+        }
+    }
 }
