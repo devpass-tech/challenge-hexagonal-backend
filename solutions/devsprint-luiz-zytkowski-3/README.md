@@ -45,6 +45,8 @@
 | type        | varchar(10) | Tipo de operação (Compra/Estorno/Pagamento) |
 | value       | double      | Valor da operação                           |
 | description | text        | Descrição da operação                       |
+| month       | int         | Mês em que deve ser cobrada a operação      |
+| year        | int         | Ano em que deve ser cobrada a operação      |
 | created_at  | timestamp   | Data/hora da operação                       |
 
 ### Credit Card Invoice Entity
