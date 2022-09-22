@@ -8,5 +8,7 @@ data class CreditCardOperation(
     var type: String,
     var value: Double,
     var description: String,
+    var month: Int,
+    var year: Int,
     var createdAt: LocalDateTime = LocalDateTime.now(),
 )
