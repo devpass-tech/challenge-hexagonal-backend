@@ -14,6 +14,8 @@ data class CreditCardOperationEntity(
     var type: String,
     var value: Double,
     var description: String,
+    var month: Int,
+    var year: Int,
     @CreationTimestamp
     var createdAt: LocalDateTime = LocalDateTime.now(),
 ) {
@@ -24,6 +26,8 @@ data class CreditCardOperationEntity(
             this.type,
             this.value,
             this.description,
+            this.month,
+            this.year,
             this.createdAt
         )
     }
