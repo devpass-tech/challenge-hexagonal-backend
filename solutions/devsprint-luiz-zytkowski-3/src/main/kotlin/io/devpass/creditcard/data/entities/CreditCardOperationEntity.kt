@@ -10,7 +10,7 @@ import javax.persistence.Id
 data class CreditCardOperationEntity(
     @Id
     var id: String,
-    var credit_card: String,
+    var creditCard: String,
     var type: String,
     var value: Double,
     var description: String,
@@ -20,11 +20,23 @@ data class CreditCardOperationEntity(
     fun toCreditCardOperation(): CreditCardOperation {
         return CreditCardOperation(
             this.id,
-            this.credit_card,
+            this.creditCard,
             this.type,
             this.value,
             this.description,
             this.createdAt
         )
+    }
+
+    companion object {
+        fun fromCreditCardOperation(creditCardOperation: CreditCardOperation): CreditCardOperationEntity {
+            return CreditCardOperationEntity(
+                id = creditCardOperation.id,
+                creditCard = creditCardOperation.creditCardId,
+                type = creditCardOperation.type,
+                value = creditCardOperation.value,
+                description = creditCardOperation.description
+            )
+        }
     }
 }

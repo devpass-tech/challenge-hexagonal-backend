@@ -32,8 +32,9 @@ class BeanGenerator {
     fun creditCardServiceAdapter(
         creditCardRepository: ICreditCardDAO,
         accountManagementGateway: IAccountManagementGateway,
+        creditCardOperationService: ICreditCardOperationServiceAdapter
     ): ICreditCardServiceAdapter {
-        return CreditCardService(creditCardRepository, accountManagementGateway)
+        return CreditCardService(creditCardRepository, accountManagementGateway, creditCardOperationService)
     }
 
     @Bean

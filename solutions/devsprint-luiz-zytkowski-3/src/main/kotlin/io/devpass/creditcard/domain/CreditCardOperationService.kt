@@ -1,6 +1,7 @@
 package io.devpass.creditcard.domain
 
 import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
+import io.devpass.creditcard.domain.objects.CreditCardCharge
 import io.devpass.creditcard.domain.objects.CreditCardOperation
 import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
 
@@ -9,5 +10,9 @@ class CreditCardOperationService(
 ) : ICreditCardOperationServiceAdapter {
     override fun getById(creditCardOperationId: String): CreditCardOperation? {
         return creditCardOperationDAO.getById(creditCardOperationId)
+    }
+
+    override fun createCreditCardOperation(creditCardCharge: CreditCardCharge) {
+        TODO("Not yet implemented")
     }
 }
