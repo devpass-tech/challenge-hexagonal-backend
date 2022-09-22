@@ -4,10 +4,13 @@ import io.devpass.creditcard.domain.objects.CreditCard
 import java.time.LocalDateTime
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
+@Table(name = "credit_card")
 data class CreditCardEntity(
     @Id var id: String,
     var owner: String,
