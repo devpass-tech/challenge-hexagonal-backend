@@ -5,8 +5,10 @@ import java.time.LocalDateTime
 import org.hibernate.annotations.CreationTimestamp
 import javax.persistence.Entity
 import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
+@Table(name = "credit_card_operation")
 data class CreditCardOperationEntity(
     @Id
     var id: String,
