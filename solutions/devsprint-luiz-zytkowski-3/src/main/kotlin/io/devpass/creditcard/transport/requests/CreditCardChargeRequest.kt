@@ -3,7 +3,6 @@ package io.devpass.creditcard.transport.requests
 import io.devpass.creditcard.domain.objects.CreditCardCharge
 
 data class CreditCardChargeRequest(
-    val id: String,
     val creditCard: String,
     val purchaseValue: Double,
     val installmentNumber: Int,
