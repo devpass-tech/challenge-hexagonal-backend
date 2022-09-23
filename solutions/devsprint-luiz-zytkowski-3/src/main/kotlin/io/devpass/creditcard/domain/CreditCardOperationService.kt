@@ -12,6 +12,7 @@ class CreditCardOperationService(
     private val creditCardOperationDAO: ICreditCardOperationDAO,
     private val creditCardDAO: ICreditCardDAO,
 ) : ICreditCardOperationServiceAdapter {
+
     override fun getById(creditCardOperationId: String): CreditCardOperation? {
         return creditCardOperationDAO.getById(creditCardOperationId)
     }
@@ -36,7 +37,6 @@ class CreditCardOperationService(
 
     private fun createSomeCreditCardOperations(creditCardCharge: CreditCardCharge): List<CreditCardOperation> {
         val creditCardOperationList: MutableList<CreditCardOperation> = mutableListOf()
-        val installmentValue = creditCardCharge.purchaseValue / creditCardCharge.installmentNumber
         var iterator = 0
         var month = creditCardCharge.month
         var year = creditCardCharge.year
@@ -52,16 +52,17 @@ class CreditCardOperationService(
                 CreditCardOperation(
                     creditCard = creditCardCharge.creditCard,
                     type = "Cobrança",
-                    value = installmentValue,
+                    value = creditCardCharge.purchaseValue / creditCardCharge.installmentNumber,
                     description = creditCardCharge.description,
                     month = month,
                     year = year
                 )
             )
+
             iterator++
         }
-        return creditCardOperationList
 
+        return creditCardOperationList
     }
 
     override fun chargeCreditCard(creditCardCharge: CreditCardCharge) {
@@ -81,6 +82,5 @@ class CreditCardOperationService(
         creditCardDAO.save(creditCard)
 
         createCreditCardOperation(creditCardCharge)
-
     }
 }
