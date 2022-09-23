@@ -2,7 +2,8 @@ package io.devpass.creditcard.domain
 
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
 import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
-import io.devpass.creditcard.domain.exceptions.OwnedException
+import io.devpass.creditcard.domain.exceptions.BusinessRuleException
+import io.devpass.creditcard.domain.exceptions.EntityNotFoundException
 import io.devpass.creditcard.domain.objects.CreditCardCharge
 import io.devpass.creditcard.domain.objects.CreditCardOperation
 import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
@@ -46,6 +47,7 @@ class CreditCardOperationService(
                 month -= 12
                 year += 1
             }
+
             creditCardOperationList.add(
                 CreditCardOperation(
                     creditCard = creditCardCharge.creditCard,
@@ -64,19 +66,16 @@ class CreditCardOperationService(
 
     override fun chargeCreditCard(creditCardCharge: CreditCardCharge) {
         val creditCard = creditCardDAO.getCreditCardById(creditCardCharge.creditCard)
-            ?: throw OwnedException("Cartão de id: ${creditCardCharge.creditCard} não encontrado")
+            ?: throw EntityNotFoundException("Cartão de id: ${creditCardCharge.creditCard} não encontrado")
 
-
-        //Não sei como verificar as condições e fazer uma exceção usando when
         if (creditCardCharge.purchaseValue > creditCard.availableCreditLimit)
-            throw OwnedException("Não há limite para a compra de valor R$${creditCardCharge.purchaseValue}. Limite disponível: ${creditCard.availableCreditLimit}")
+            throw BusinessRuleException("Não há limite para a compra de valor R$${creditCardCharge.purchaseValue}. Limite disponível: ${creditCard.availableCreditLimit}")
 
         if (creditCardCharge.installmentNumber < 1 || creditCardCharge.installmentNumber > 12)
-            throw OwnedException("O número de parcelas desta transação (${creditCardCharge.installmentNumber}) não está entre o permitido: 1 a 12")
-
+            throw BusinessRuleException("O número de parcelas desta transação (${creditCardCharge.installmentNumber}) não está entre o permitido: 1 a 12")
 
         if (creditCardCharge.purchaseValue < 6)
-            throw OwnedException("O valor da compra R$${creditCardCharge.purchaseValue} é menor do que o mínimo permitido: R$6,00")
+            throw BusinessRuleException("O valor da compra R$${creditCardCharge.purchaseValue} é menor do que o mínimo permitido: R$6,00")
 
         creditCard.availableCreditLimit -= creditCardCharge.purchaseValue
         creditCardDAO.save(creditCard)
