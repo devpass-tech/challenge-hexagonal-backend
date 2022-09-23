@@ -14,7 +14,7 @@ class CreditCardOperationDAO(
             .toCreditCardOperation() else null
     }
 
-    override fun create(creditCardOperation: CreditCardOperation): CreditCardOperation {
+    override fun save(creditCardOperation: CreditCardOperation): CreditCardOperation {
         return creditCardOperationRepository.save(CreditCardOperationEntity.fromCreditCardOperation(creditCardOperation))
             .toCreditCardOperation()
     }
