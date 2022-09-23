@@ -40,6 +40,8 @@ data class CreditCardOperationEntity(
                 id = creditCardOperation.id,
                 creditCard = creditCardOperation.creditCard,
                 type = creditCardOperation.type,
+                month = creditCardOperation.month,
+                year = creditCardOperation.year,
                 value = creditCardOperation.value,
                 description = creditCardOperation.description
             )

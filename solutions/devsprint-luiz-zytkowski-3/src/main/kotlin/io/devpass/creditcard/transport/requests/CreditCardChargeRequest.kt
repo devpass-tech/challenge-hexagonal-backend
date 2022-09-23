@@ -2,12 +2,13 @@ package io.devpass.creditcard.transport.requests
 
 import io.devpass.creditcard.domain.objects.CreditCardCharge
 
-data class CreditCardChargeResquest(
+data class CreditCardChargeRequest(
     val id: String,
     val creditCard: String,
     val purchaseValue: Double,
     val installmentNumber: Int,
-    val installmentValue: Double,
+    val month: Int,
+    val year: Int,
     val description: String,
 ) {
     fun toCreditCardCharge(): CreditCardCharge {
@@ -15,7 +16,8 @@ data class CreditCardChargeResquest(
             creditCard = this.creditCard,
             purchaseValue = this.purchaseValue,
             installmentNumber = this.installmentNumber,
-            installmentValue = this.installmentValue,
+            month = this.month,
+            year = this.year,
             description = this.description,
         )
     }

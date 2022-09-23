@@ -4,6 +4,7 @@ data class CreditCardCharge(
     val creditCard: String,
     val purchaseValue: Double,
     val installmentNumber: Int,
-    val installmentValue: Double,
+    val month: Int,
+    val year: Int,
     val description: String,
 )
