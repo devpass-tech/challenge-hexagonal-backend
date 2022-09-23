@@ -75,7 +75,7 @@ class CreditCardOperationService(
         if (creditCardCharge.installmentNumber < 1 || creditCardCharge.installmentNumber > 12)
             throw BusinessRuleException("O número de parcelas desta transação (${creditCardCharge.installmentNumber}) não está entre o permitido: 1 a 12")
 
-        if (creditCardCharge.purchaseValue < 6)
+        if (creditCardCharge.installmentNumber > 1 && creditCardCharge.purchaseValue < 6)
             throw BusinessRuleException("O valor da compra R$${creditCardCharge.purchaseValue} é menor do que o mínimo permitido: R$6,00")
 
         creditCard.availableCreditLimit -= creditCardCharge.purchaseValue
