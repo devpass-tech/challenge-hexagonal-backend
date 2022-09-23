@@ -1,6 +1,7 @@
 package io.devpass.creditcard.infrastructure
 
 import io.devpass.creditcard.data.*
+import io.devpass.creditcard.data.entities.CreditCardEntity
 import io.devpass.creditcard.data.repositories.CreditCardRepository
 import io.devpass.creditcard.data.repositories.CreditCardOperationRepository
 import io.devpass.creditcard.dataaccess.IAccountManagementGateway
