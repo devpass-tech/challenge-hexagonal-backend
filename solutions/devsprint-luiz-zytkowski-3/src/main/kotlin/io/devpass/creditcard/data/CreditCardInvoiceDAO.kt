@@ -6,7 +6,6 @@ import io.devpass.creditcard.dataaccess.ICreditCardInvoiceDAO
 import io.devpass.creditcard.domain.exceptions.OwnedException
 import io.devpass.creditcard.domain.objects.CreditCardInvoice
 import io.devpass.creditcard.domain.objects.CreditCardInvoiceByDate
-import io.devpass.creditcard.domain.objects.CreditCardOperation
 
 class CreditCardInvoiceDAO(
     private val creditCardInvoiceRepository: CreditCardInvoiceRepository,
@@ -17,11 +16,13 @@ class CreditCardInvoiceDAO(
             .toCreditCardInvoice() else null
     }
 
-//    wip
-//    override fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): List<CreditCardInvoice?> {
-//        val creditCardInvoiceEntity = creditCardInvoiceRepository.findByInvoiceByDate(creditCardInvoiceByDate)
-//        return if (creditCardInvoiceEntity.isPresent) creditCardInvoiceEntity.get()
-//             else throw OwnedException("Not found")
-//    }
+    override fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): List<CreditCardInvoice?> {
+        val creditCardInvoiceEntity = creditCardInvoiceRepository.findByInvoiceByDate(
+            creditCardInvoiceByDate.creditCard,
+            creditCardInvoiceByDate.month,
+            creditCardInvoiceByDate.year
+        )
+        return creditCardInvoiceEntity.ifEmpty { throw OwnedException("Not found") }
+    }
 
 }
