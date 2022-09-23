@@ -4,7 +4,7 @@ import io.devpass.creditcard.domain.objects.CreditCardCharge
 
 data class CreditCardChargeResquest(
     val id: String,
-    val creditCardId: String,
+    val creditCard: String,
     val purchaseValue: Double,
     val installmentNumber: Int,
     val installmentValue: Double,
@@ -12,8 +12,7 @@ data class CreditCardChargeResquest(
 ) {
     fun toCreditCardCharge(): CreditCardCharge {
         return CreditCardCharge(
-            id = this.id,
-            creditCardId = this.creditCardId,
+            creditCard = this.creditCard,
             purchaseValue = this.purchaseValue,
             installmentNumber = this.installmentNumber,
             installmentValue = this.installmentValue,

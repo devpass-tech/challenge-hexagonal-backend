@@ -38,7 +38,7 @@ data class CreditCardOperationEntity(
         fun fromCreditCardOperation(creditCardOperation: CreditCardOperation): CreditCardOperationEntity {
             return CreditCardOperationEntity(
                 id = creditCardOperation.id,
-                creditCard = creditCardOperation.creditCardId,
+                creditCard = creditCardOperation.creditCard,
                 type = creditCardOperation.type,
                 value = creditCardOperation.value,
                 description = creditCardOperation.description
