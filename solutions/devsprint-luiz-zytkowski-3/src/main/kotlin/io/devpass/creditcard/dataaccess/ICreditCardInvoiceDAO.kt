@@ -6,5 +6,5 @@ import io.devpass.creditcard.domain.objects.CreditCardInvoiceByDate
 interface ICreditCardInvoiceDAO {
     fun getById(id: String): CreditCardInvoice?
 
-    fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): List<CreditCardInvoice?>
+    fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): CreditCardInvoice?
 }

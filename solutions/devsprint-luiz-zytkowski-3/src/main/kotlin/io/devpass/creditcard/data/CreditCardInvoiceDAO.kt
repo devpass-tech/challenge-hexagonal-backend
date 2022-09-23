@@ -16,13 +16,13 @@ class CreditCardInvoiceDAO(
             .toCreditCardInvoice() else null
     }
 
-    override fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): List<CreditCardInvoice?> {
+    override fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): CreditCardInvoice? {
         val creditCardInvoiceEntity = creditCardInvoiceRepository.findByInvoiceByDate(
             creditCardInvoiceByDate.creditCard,
             creditCardInvoiceByDate.month,
             creditCardInvoiceByDate.year
         )
-        return creditCardInvoiceEntity.ifEmpty { throw OwnedException("Not found") }
+        return if(creditCardInvoiceEntity.isPresent) creditCardInvoiceEntity.get() else null
     }
 
 }

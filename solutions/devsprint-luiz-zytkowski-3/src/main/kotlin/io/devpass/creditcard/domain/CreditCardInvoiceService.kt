@@ -13,7 +13,7 @@ class CreditCardInvoiceService(
         return creditCardInvoiceDAO.getById(creditCardInvoiceId)
     }
 
-    override fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): List<CreditCardInvoice?> {
+    override fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): CreditCardInvoice? {
         val creditCard = creditCardInvoiceDAO.getById(creditCardInvoiceByDate.creditCard)
             ?: throw OwnedException("Cartão de ID: ${creditCardInvoiceByDate.creditCard} não encontrado.")
 

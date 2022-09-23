@@ -22,7 +22,7 @@ class CreditCardInvoiceController(
     }
 
     @GetMapping("/by-date")
-    fun findInvoiceByDate(@RequestBody creditCardInvoiceByDateRequest: CreditCardInvoiceByDateRequest): List<CreditCardInvoice?> {
+    fun findInvoiceByDate(@RequestBody creditCardInvoiceByDateRequest: CreditCardInvoiceByDateRequest): CreditCardInvoice? {
         return creditCardInvoiceServiceAdapter.findInvoiceByDate(creditCardInvoiceByDateRequest.toCreditCardInvoiceByDate())
             ?: throw OwnedException("Credit Card Invoices Not found")
     }
