@@ -22,7 +22,11 @@ class CreditCardInvoiceController(
     }
 
     @GetMapping("/by-date")
-    fun findInvoiceByDate(@RequestParam creditCard: String, month: Int, year: Int): CreditCardInvoice? {
+    fun findInvoiceByDate(
+        @RequestParam creditCard: String,
+        @RequestParam month: Int,
+        @RequestParam year: Int
+    ): CreditCardInvoice? {
         val creditCardInvoiceByDateRequest = CreditCardInvoiceByDateRequest(
             creditCard = creditCard, month = month, year = year
         )

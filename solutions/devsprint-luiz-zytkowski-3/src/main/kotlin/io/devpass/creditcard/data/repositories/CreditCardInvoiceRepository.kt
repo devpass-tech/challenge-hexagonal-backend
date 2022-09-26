@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CreditCardInvoiceRepository : CrudRepository<CreditCardInvoiceEntity, String> {
 
-    @Query("select ccie from CreditCardInvoice ccie where ccie.credit_card = ?1 and ccie.month = ?2 and ccie.year = ?3")
+    @Query("select ccie from CreditCardInvoiceEntity ccie where ccie.credit_card = ?1 and ccie.month = ?2 and ccie.year = ?3")
     fun findByInvoiceByDate(creditCard: String, month: Int, year: Int): List<CreditCardInvoiceEntity>
 }
