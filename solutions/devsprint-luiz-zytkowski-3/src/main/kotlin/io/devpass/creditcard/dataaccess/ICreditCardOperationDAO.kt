@@ -5,4 +5,5 @@ import io.devpass.creditcard.domain.objects.CreditCardOperation
 interface ICreditCardOperationDAO {
 
     fun getById(id: String): CreditCardOperation?
+    fun save(creditCardOperation: CreditCardOperation): CreditCardOperation
 }

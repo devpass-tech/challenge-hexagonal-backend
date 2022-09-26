@@ -4,7 +4,6 @@ import io.devpass.creditcard.domain.objects.CreditCard
 import java.time.LocalDateTime
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
-import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
@@ -34,6 +33,20 @@ data class CreditCardEntity(
             this.creditLimit,
             this.availableCreditLimit,
         )
+    }
+
+    companion object {
+        fun fromCreditCard(creditCard: CreditCard): CreditCardEntity {
+            return CreditCardEntity(
+                id = creditCard.id,
+                owner = creditCard.owner,
+                number = creditCard.number,
+                securityCode = creditCard.securityCode,
+                printedName = creditCard.printedName,
+                creditLimit = creditCard.creditLimit,
+                availableCreditLimit = creditCard.availableCreditLimit
+            )
+        }
     }
 }
 
