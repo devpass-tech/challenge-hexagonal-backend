@@ -23,8 +23,11 @@ class CreditCardOperationController(
 
     @GetMapping("/")
     fun operationReport(
-        @RequestParam creditCardId: String,
+        @RequestParam
+        creditCardId: String,
+        @RequestParam
         operationMonth: Int,
+        @RequestParam
         operationYear: Int
     ): List<CreditCardOperation?> {
         return creditCardOperationServiceAdapter.operationReport(creditCardId, operationMonth, operationYear)
