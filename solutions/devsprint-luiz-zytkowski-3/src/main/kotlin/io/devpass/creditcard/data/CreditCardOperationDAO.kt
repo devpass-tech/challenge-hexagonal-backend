@@ -4,6 +4,7 @@ import io.devpass.creditcard.data.entities.CreditCardOperationEntity
 import io.devpass.creditcard.data.repositories.CreditCardOperationRepository
 import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
 import io.devpass.creditcard.domain.objects.CreditCardOperation
+import java.util.UUID
 
 class CreditCardOperationDAO(
     private val creditCardOperationRepository: CreditCardOperationRepository,
@@ -15,8 +16,17 @@ class CreditCardOperationDAO(
     }
 
     override fun save(creditCardOperation: CreditCardOperation): CreditCardOperation {
-        return creditCardOperationRepository.save(CreditCardOperationEntity.fromCreditCardOperation(creditCardOperation))
-            .toCreditCardOperation()
+        return creditCardOperationRepository.save(
+            CreditCardOperationEntity(
+                id = UUID.randomUUID().toString(),
+                creditCard = creditCardOperation.creditCard,
+                type = creditCardOperation.type,
+                month = creditCardOperation.month,
+                year = creditCardOperation.year,
+                value = creditCardOperation.value,
+                description = creditCardOperation.description
+            )
+        ).toCreditCardOperation()
     }
 
 }

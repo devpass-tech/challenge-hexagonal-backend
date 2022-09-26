@@ -25,6 +25,7 @@ class CreditCardOperationService(
         for (i in 1 until 12) {
             creditCardOperationList.add(
                 CreditCardOperation(
+                    id = "", //will be auto-generated
                     creditCard = creditCardCharge.creditCard,
                     type = "Cobrança",
                     value = creditCardCharge.purchaseValue / creditCardCharge.installmentNumber,
@@ -52,7 +53,7 @@ class CreditCardOperationService(
             throw BusinessRuleException("O valor da compra R$${creditCardCharge.purchaseValue} é menor do que o mínimo permitido: R$6,00")
 
         creditCard.availableCreditLimit -= creditCardCharge.purchaseValue
-        creditCardDAO.save(creditCard)
+        creditCardDAO.updateAvailableCreditLimit(creditCard)
 
         return createCreditCardOperation(creditCardCharge)
     }
