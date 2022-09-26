@@ -1,9 +1,9 @@
 package io.devpass.creditcard.domain
 
 import io.devpass.creditcard.data.AntiFraudGateway
-import io.devpass.creditcard.data.accountmanagement.request.AccountCreationRequest
 import io.devpass.creditcard.dataaccess.IAccountManagementGateway
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
+import io.devpass.creditcard.domain.creditcard.CreditCardNumberGenerator
 import io.devpass.creditcard.domain.exceptions.RequestCreditCardException
 import io.devpass.creditcard.domain.objects.CreditCard
 import io.devpass.creditcard.domain.objects.CreditCardRequest
@@ -23,7 +23,7 @@ class CreditCardService(
 
         val eligibility = antiFraudGateway.creditCardEligibility(creditCardRequest.CPF)
 
-        if (eligibility.shouldHaveCreditCard)
+        if (!eligibility.shouldHaveCreditCard)
             throw RequestCreditCardException("Não foi possível gerar cartão de crédito")
 
         val proposedLimit = eligibility.proposedLimit
@@ -35,8 +35,18 @@ class CreditCardService(
         }
 
 
+        val creditCard = CreditCard(
+            id = "",
+            owner = creditCardRequest.CPF,
+            number = CreditCardNumberGenerator.generateCreditCardNumber(bin = "1234", length = 11),
+            securityCode = CreditCardNumberGenerator.generateCreditCardSecurityNumber(length = 3),
+            printedName = creditCardRequest.name,
+            creditLimit = proposedLimit,
+            availableCreditLimit = proposedLimit,
+        )
+
         accountManagementGateway.createAccount(cpf = creditCardRequest.CPF)
 
-        return creditCardDAO.createCreditCard(CPF = creditCardRequest.CPF, name = creditCardRequest.name, creditLimit = proposedLimit)
+        return creditCardDAO.createCreditCard(creditCard)
     }
 }
