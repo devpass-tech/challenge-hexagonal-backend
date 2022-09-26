@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository
 
 interface CreditCardRepository : CrudRepository<CreditCardEntity, String>{
 
-    fun searchCreditCardEntityByOwner() : Boolean
+    @Query("SELECT cce FROM CreditCardEntity  CCE WHERE cce.owner = ?1")
+    fun searchCreditCardEntityByOwner(cpf : String) : List<CreditCardEntity>
 }

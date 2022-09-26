@@ -6,5 +6,5 @@ import io.devpass.creditcard.domain.objects.CreditCardRequest
 interface ICreditCardServiceAdapter {
     fun findCreditCardById(creditCardId: String): CreditCard?
 
-    fun requestCreditCard(creditCardRequest: CreditCardRequest)
+    fun requestCreditCard(creditCardRequest: CreditCardRequest) : CreditCard
 }

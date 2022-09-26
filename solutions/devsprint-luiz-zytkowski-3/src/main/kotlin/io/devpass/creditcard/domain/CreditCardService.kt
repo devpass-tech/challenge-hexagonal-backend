@@ -13,27 +13,30 @@ class CreditCardService(
     private val creditCardDAO: ICreditCardDAO,
     private val accountManagementGateway: IAccountManagementGateway,
     private val antiFraudGateway: AntiFraudGateway,
-    private val accountCreationRequest: AccountCreationRequest
 ) : ICreditCardServiceAdapter {
 
     override fun findCreditCardById(creditCardId: String): CreditCard? {
         return creditCardDAO.getCreditCardById(creditCardId)
     }
 
-    override fun requestCreditCard(creditCardRequest: CreditCardRequest){
+    override fun requestCreditCard(creditCardRequest: CreditCardRequest): CreditCard {
 
         val eligibility = antiFraudGateway.creditCardEligibility(creditCardRequest.CPF)
 
-        val existingCreditCardByCPF = creditCardDAO.checksExistingCreditCardByCPF(creditCardRequest.CPF)
-
-        if (eligibility.shouldHaveCreditCard) {
-            if(!existingCreditCardByCPF){
-                accountManagementGateway.createAccount(accountCreationRequest = accountCreationRequest)
-            } else throw RequestCreditCardException("Já existe um cartão de crédito para esse CPF")
-        } else {
+        if (eligibility.shouldHaveCreditCard)
             throw RequestCreditCardException("Não foi possível gerar cartão de crédito")
-        }
-       .also { creditCardDAO.createCreditCard(CPF = creditCardRequest.CPF, creditLimit = eligibility.proposedLimit!!) }
 
+        val proposedLimit = eligibility.proposedLimit
+            ?: throw RuntimeException("Deu muito ruim")
+
+
+        creditCardDAO.checksExistingCreditCardByCPF(creditCardRequest.CPF)?.also {
+            throw RequestCreditCardException("Já existe cartão de crédito para esse CPF")
+        }
+
+
+        accountManagementGateway.createAccount(cpf = creditCardRequest.CPF)
+
+        return creditCardDAO.createCreditCard(CPF = creditCardRequest.CPF, creditLimit = proposedLimit)
     }
 }

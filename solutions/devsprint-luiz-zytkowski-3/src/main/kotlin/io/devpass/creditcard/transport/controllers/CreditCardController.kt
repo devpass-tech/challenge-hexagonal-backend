@@ -24,7 +24,7 @@ class CreditCardController(
     }
 
     @PostMapping("/create-credit-card-request")
-    fun requestCreditCard(@RequestBody creditCardRequest: CreditCardRequest) {
-            creditCardServiceAdapter.requestCreditCard(creditCardRequest)
+    fun requestCreditCard(@RequestBody creditCardRequest: CreditCardRequest) : CreditCard {
+            return creditCardServiceAdapter.requestCreditCard(creditCardRequest)
     }
 }

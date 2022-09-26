@@ -5,7 +5,7 @@ import io.devpass.creditcard.domain.objects.CreditCard
 interface ICreditCardDAO {
     fun getCreditCardById(id: String) : CreditCard?
 
-    fun checksExistingCreditCardByCPF(CPF: String) : Boolean
+    fun checksExistingCreditCardByCPF(CPF: String) : CreditCard?
 
-    fun createCreditCard(CPF: String, creditLimit: Double)
+    fun createCreditCard(CPF: String, creditLimit: Double): CreditCard
 }

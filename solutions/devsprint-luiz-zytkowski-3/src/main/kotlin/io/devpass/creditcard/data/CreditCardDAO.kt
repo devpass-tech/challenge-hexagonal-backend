@@ -14,11 +14,11 @@ class CreditCardDAO(
         return if(creditCard.isPresent) creditCard.get().toCreditCard() else null
     }
 
-    override fun checksExistingCreditCardByCPF(CPF: String): Boolean {
-        return creditCardRepository.searchCreditCardEntityByOwner()
+    override fun checksExistingCreditCardByCPF(CPF: String): CreditCard? {
+        return creditCardRepository.searchCreditCardEntityByOwner(CPF).firstOrNull()?.toCreditCard()
     }
 
-    override fun createCreditCard(CPF: String, creditLimit: Double) {
-        creditCardRepository.save(creditCard)
+    override fun createCreditCard(CPF: String, creditLimit: Double) : CreditCard {
+        return creditCardRepository.save(creditCard).toCreditCard()
     }
 }
