@@ -22,7 +22,7 @@ class CreditCardInvoiceService(
             throw OwnedException("Mês inserido inválido")
         }
 
-        if (creditCardInvoiceByDate.year > 1950 && creditCardInvoiceByDate.year < LocalDateTime.now().year) {
+        if (creditCardInvoiceByDate.year < 1950 && creditCardInvoiceByDate.year > LocalDateTime.now().year) {
             throw OwnedException("Ano inserido inválido")
         }
 
