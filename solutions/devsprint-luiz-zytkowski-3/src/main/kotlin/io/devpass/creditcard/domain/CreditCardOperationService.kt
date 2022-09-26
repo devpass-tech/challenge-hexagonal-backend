@@ -7,6 +7,7 @@ import io.devpass.creditcard.domain.exceptions.EntityNotFoundException
 import io.devpass.creditcard.domain.objects.CreditCardCharge
 import io.devpass.creditcard.domain.objects.CreditCardOperation
 import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
+import java.time.LocalDate
 
 class CreditCardOperationService(
     private val creditCardOperationDAO: ICreditCardOperationDAO,
@@ -17,55 +18,27 @@ class CreditCardOperationService(
         return creditCardOperationDAO.getById(creditCardOperationId)
     }
 
-    //TODO: essa função tá sem retorno, porque ela pode retornar uma lista ou só um objeto
-    override fun createCreditCardOperation(creditCardCharge: CreditCardCharge) {
-        if (creditCardCharge.installmentNumber > 1) {
-            createSomeCreditCardOperations(creditCardCharge).forEach {
-                creditCardOperationDAO.save(it)
-            }
-        } else creditCardOperationDAO.save(
-            CreditCardOperation(
-                creditCard = creditCardCharge.creditCard,
-                type = "Cobrança", //TODO: Aqui poderia criar um ENUM?
-                value = creditCardCharge.purchaseValue,
-                description = creditCardCharge.description,
-                month = creditCardCharge.month,
-                year = creditCardCharge.year
-            )
-        )
-    }
-
-    private fun createSomeCreditCardOperations(creditCardCharge: CreditCardCharge): List<CreditCardOperation> {
+    override fun createCreditCardOperation(creditCardCharge: CreditCardCharge): List<CreditCardOperation> {
         val creditCardOperationList: MutableList<CreditCardOperation> = mutableListOf()
-        var iterator = 0
-        var month = creditCardCharge.month
-        var year = creditCardCharge.year
+        var chargingPeriod = LocalDate.now().withDayOfMonth(1)
 
-        while (iterator < creditCardCharge.installmentNumber) {
-            month += iterator
-            if (month + iterator > 12) {
-                month -= 12
-                year += 1
-            }
-
+        for (i in 1 until 12) {
             creditCardOperationList.add(
                 CreditCardOperation(
                     creditCard = creditCardCharge.creditCard,
                     type = "Cobrança",
                     value = creditCardCharge.purchaseValue / creditCardCharge.installmentNumber,
-                    description = creditCardCharge.description,
-                    month = month,
-                    year = year
+                    description = "${creditCardCharge.description} $i/${creditCardCharge.installmentNumber}",
+                    month = chargingPeriod.monthValue,
+                    year = chargingPeriod.year
                 )
             )
-
-            iterator++
+            chargingPeriod = chargingPeriod.plusMonths(1)
         }
-
-        return creditCardOperationList
+        return creditCardOperationList.map { creditCardOperationDAO.save(it) }
     }
 
-    override fun chargeCreditCard(creditCardCharge: CreditCardCharge) {
+    override fun chargeCreditCard(creditCardCharge: CreditCardCharge): List<CreditCardOperation> {
         val creditCard = creditCardDAO.getCreditCardById(creditCardCharge.creditCard)
             ?: throw EntityNotFoundException("Cartão de id: ${creditCardCharge.creditCard} não encontrado")
 
@@ -81,6 +54,6 @@ class CreditCardOperationService(
         creditCard.availableCreditLimit -= creditCardCharge.purchaseValue
         creditCardDAO.save(creditCard)
 
-        createCreditCardOperation(creditCardCharge)
+        return createCreditCardOperation(creditCardCharge)
     }
 }

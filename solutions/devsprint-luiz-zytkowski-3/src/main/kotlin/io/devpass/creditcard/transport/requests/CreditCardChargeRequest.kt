@@ -6,8 +6,6 @@ data class CreditCardChargeRequest(
     val creditCard: String,
     val purchaseValue: Double,
     val installmentNumber: Int,
-    val month: Int,
-    val year: Int,
     val description: String,
 ) {
     fun toCreditCardCharge(): CreditCardCharge {
@@ -15,8 +13,6 @@ data class CreditCardChargeRequest(
             creditCard = this.creditCard,
             purchaseValue = this.purchaseValue,
             installmentNumber = this.installmentNumber,
-            month = this.month,
-            year = this.year,
             description = this.description,
         )
     }

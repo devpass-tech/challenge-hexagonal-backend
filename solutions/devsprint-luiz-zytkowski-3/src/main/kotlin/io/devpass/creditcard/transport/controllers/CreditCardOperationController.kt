@@ -24,7 +24,7 @@ class CreditCardOperationController(
     }
 
     @PostMapping
-    fun chargeCreditCard(@RequestBody creditCardChargeRequest: CreditCardChargeRequest) {
-        creditCardOperationServiceAdapter.chargeCreditCard(creditCardChargeRequest.toCreditCardCharge())
+    fun chargeCreditCard(@RequestBody creditCardChargeRequest: CreditCardChargeRequest): List<CreditCardOperation> {
+        return creditCardOperationServiceAdapter.chargeCreditCard(creditCardChargeRequest.toCreditCardCharge())
     }
 }
