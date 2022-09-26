@@ -2,11 +2,9 @@ package io.devpass.creditcard.domain
 
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
 import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
-import io.devpass.creditcard.domain.exceptions.OwnedException
-import io.devpass.creditcard.domain.objects.CreditCard
+import io.devpass.creditcard.domain.exceptions.BusinessRuleException
 import io.devpass.creditcard.domain.objects.CreditCardOperation
 import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
-import java.time.LocalDate
 import javax.persistence.EntityNotFoundException
 
 class CreditCardOperationService(
@@ -25,14 +23,14 @@ class CreditCardOperationService(
         creditCardDAO.getCreditCardById(creditCardId)
             ?: throw EntityNotFoundException("Cartão de id: $creditCardId não encontrado")
 
-        if (operationMonth in 1..12) {
-            throw OwnedException("Mês inserido inválido")
+        if (operationMonth !in 1..12) {
+            throw BusinessRuleException("Mês inserido inválido")
         }
 
         if (operationYear < 1950) {
-            throw OwnedException("Ano inserido inválido")
+            throw BusinessRuleException("Ano inserido inválido")
         }
 
-        return operationReport(creditCardId, operationMonth, operationYear)
+        return creditCardOperationDAO.operationReport(creditCardId, operationMonth, operationYear)
     }
 }

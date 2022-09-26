@@ -6,5 +6,5 @@ interface ICreditCardOperationDAO {
 
     fun getById(id: String): CreditCardOperation?
 
-    fun operationReport(id: String, month: Int, year: Int) : List<CreditCardOperation?>
+    fun operationReport(id: String, month: Int, year: Int) : List<CreditCardOperation>
 }

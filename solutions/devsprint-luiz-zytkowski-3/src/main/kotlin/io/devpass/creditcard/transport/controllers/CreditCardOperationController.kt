@@ -5,8 +5,8 @@ import io.devpass.creditcard.domain.objects.CreditCardOperation
 import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -23,13 +23,10 @@ class CreditCardOperationController(
 
     @GetMapping("/")
     fun operationReport(
-        @RequestBody creditCardId: String,
+        @RequestParam creditCardId: String,
         operationMonth: Int,
         operationYear: Int
     ): List<CreditCardOperation?> {
-        val creditCardOperation = creditCardOperationServiceAdapter.operationReport(creditCardId, operationMonth, operationYear)
-        return creditCardOperation.ifEmpty {
-            throw OwnedException("Bank statement empty for: $operationMonth/$operationYear")
-        }
+        return creditCardOperationServiceAdapter.operationReport(creditCardId, operationMonth, operationYear)
     }
 }
