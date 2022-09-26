@@ -9,6 +9,7 @@ import java.util.UUID
 class CreditCardOperationDAO(
     private val creditCardOperationRepository: CreditCardOperationRepository,
 ) : ICreditCardOperationDAO {
+  
     override fun getById(id: String): CreditCardOperation? {
         val creditCardOperationEntity = creditCardOperationRepository.findById(id)
         return if (creditCardOperationEntity.isPresent) creditCardOperationEntity.get()
@@ -29,4 +30,7 @@ class CreditCardOperationDAO(
         ).toCreditCardOperation()
     }
 
+    override fun operationReport(id: String, month: Int, year: Int): List<CreditCardOperation> {
+        return creditCardOperationRepository.listByPeriod(id, month, year).map { it.toCreditCardOperation() }
+    }
 }
