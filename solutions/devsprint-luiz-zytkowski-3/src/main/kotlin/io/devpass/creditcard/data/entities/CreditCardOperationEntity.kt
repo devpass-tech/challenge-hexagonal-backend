@@ -10,16 +10,15 @@ import javax.persistence.Table
 @Entity
 @Table(name = "credit_card_operation")
 data class CreditCardOperationEntity(
-    @Id
-    var id: String,
-    var credit_card: String,
-    var type: String,
-    var value: Double,
-    var description: String,
-    var month: Int,
-    var year: Int,
-    @CreationTimestamp
-    var createdAt: LocalDateTime = LocalDateTime.now(),
+        @Id
+        var id: String,
+        var type: String,
+        var value: Double,
+        var description: String,
+        var month: Int,
+        var year: Int,
+        @CreationTimestamp
+        var createdAt: LocalDateTime = LocalDateTime.now(),
 ) {
     fun toCreditCardOperation(): CreditCardOperation {
         return CreditCardOperation(
