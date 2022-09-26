@@ -18,7 +18,7 @@ class CreditCardDAO(
         return creditCardRepository.searchCreditCardEntityByOwner(CPF).firstOrNull()?.toCreditCard()
     }
 
-    override fun createCreditCard(CPF: String, creditLimit: Double) : CreditCard {
+    override fun createCreditCard(CPF: String,name: String, creditLimit: Double) : CreditCard {
         return creditCardRepository.save(creditCard).toCreditCard()
     }
 }

@@ -7,5 +7,5 @@ interface ICreditCardDAO {
 
     fun checksExistingCreditCardByCPF(CPF: String) : CreditCard?
 
-    fun createCreditCard(CPF: String, creditLimit: Double): CreditCard
+    fun createCreditCard(CPF: String, name: String, creditLimit: Double): CreditCard
 }

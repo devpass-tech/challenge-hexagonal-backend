@@ -37,6 +37,6 @@ class CreditCardService(
 
         accountManagementGateway.createAccount(cpf = creditCardRequest.CPF)
 
-        return creditCardDAO.createCreditCard(CPF = creditCardRequest.CPF, creditLimit = proposedLimit)
+        return creditCardDAO.createCreditCard(CPF = creditCardRequest.CPF, name = creditCardRequest.name, creditLimit = proposedLimit)
     }
 }
