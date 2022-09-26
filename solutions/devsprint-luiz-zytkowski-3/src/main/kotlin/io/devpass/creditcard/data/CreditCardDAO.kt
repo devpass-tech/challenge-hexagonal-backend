@@ -4,10 +4,11 @@ import io.devpass.creditcard.data.entities.CreditCardEntity
 import io.devpass.creditcard.data.repositories.CreditCardRepository
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
 import io.devpass.creditcard.domain.objects.CreditCard
+import java.time.LocalDateTime
+import java.util.UUID
 
 class CreditCardDAO(
    private val creditCardRepository: CreditCardRepository,
-   private val creditCard: CreditCardEntity,
 ) : ICreditCardDAO {
     override fun getCreditCardById(id: String): CreditCard? {
         val creditCard = creditCardRepository.findById(id)
@@ -18,7 +19,18 @@ class CreditCardDAO(
         return creditCardRepository.searchCreditCardEntityByOwner(CPF).firstOrNull()?.toCreditCard()
     }
 
-    override fun createCreditCard(CPF: String,name: String, creditLimit: Double) : CreditCard {
-        return creditCardRepository.save(creditCard).toCreditCard()
+    override fun createCreditCard(creditCard: CreditCard) : CreditCard {
+
+        return creditCardRepository.save(CreditCardEntity(
+            id = UUID.randomUUID().toString(),
+            owner = creditCard.owner,
+            number = creditCard.number,
+            securityCode = creditCard.securityCode,
+            printedName = creditCard.printedName,
+            creditLimit = creditCard.creditLimit,
+            availableCreditLimit = creditCard.availableCreditLimit,
+            createdAt = LocalDateTime.now(),
+            updatedAt = LocalDateTime.now(),
+        )).toCreditCard()
     }
 }
