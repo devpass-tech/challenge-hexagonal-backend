@@ -5,6 +5,7 @@ import io.devpass.creditcard.domain.exceptions.OwnedException
 import io.devpass.creditcard.domain.objects.CreditCardInvoice
 import io.devpass.creditcard.domain.objects.CreditCardInvoiceByDate
 import io.devpass.creditcard.domainaccess.ICreditCardInvoiceServiceAdapter
+import java.time.LocalDateTime
 
 class CreditCardInvoiceService(
     private val creditCardInvoiceDAO: ICreditCardInvoiceDAO
@@ -17,11 +18,11 @@ class CreditCardInvoiceService(
         val creditCard = creditCardInvoiceDAO.getById(creditCardInvoiceByDate.creditCard)
             ?: throw OwnedException("Cartão de ID: ${creditCardInvoiceByDate.creditCard} não encontrado.")
 
-        if (creditCardInvoiceByDate.month in 1..12) {
+        if (creditCardInvoiceByDate.month !in 1..12) {
             throw OwnedException("Mês inserido inválido")
         }
 
-        if (creditCardInvoiceByDate.year > 1950 && creditCard.year < 2022) {
+        if (creditCardInvoiceByDate.year > 1950 && creditCardInvoiceByDate.year < LocalDateTime.now().year) {
             throw OwnedException("Ano inserido inválido")
         }
 
