@@ -1,4 +1,4 @@
-package io.devpass.creditcard.transport.requests
+package io.devpass.creditcard.transport.request
 
 import io.devpass.creditcard.domain.objects.CreditCardInvoiceByDate
 

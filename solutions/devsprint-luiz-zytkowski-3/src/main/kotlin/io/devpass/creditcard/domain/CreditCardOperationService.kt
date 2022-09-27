@@ -5,15 +5,12 @@ import io.devpass.creditcard.dataaccess.ICreditCardOperationDAO
 import io.devpass.creditcard.domain.objects.CreditCardCharge
 import io.devpass.creditcard.domain.objects.CreditCardOperation
 import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
-import javax.persistence.EntityNotFoundException
 import java.time.LocalDateTime
 import io.devpass.creditcard.domain.exceptions.BusinessRuleException
 import io.devpass.creditcard.domain.exceptions.EntityNotFoundException
-import io.devpass.creditcard.domain.objects.CreditCardCharge
-import io.devpass.creditcard.domain.objects.CreditCardOperation
-import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
+import java.time.LocalDate
 
-abstract class CreditCardOperationService(
+class CreditCardOperationService(
     private val creditCardOperationDAO: ICreditCardOperationDAO,
     private val creditCardDAO: ICreditCardDAO,
 ) : ICreditCardOperationServiceAdapter {
@@ -22,27 +19,29 @@ abstract class CreditCardOperationService(
         return creditCardOperationDAO.getById(creditCardOperationId)
     }
 
-    override fun rollbackOperation(creditCardCharge: CreditCardCharge, creditCardOperation: CreditCardOperation): CreditCardOperation {
-        val creditCard = creditCardDAO.getCreditCardById(creditCardCharge.creditCard)
-                ?: throw EntityNotFoundException("Cartão de id: ${creditCardCharge.creditCard} não encontrado")
+    override fun rollbackOperation(creditCardOperationId: String): CreditCardOperation {
+        val getOperation = creditCardOperationDAO.getById(creditCardOperationId)
+            ?: throw EntityNotFoundException("Operação não encontrada")
 
-        val getOperation = creditCardOperationDAO.getById(creditCardOperation.id)
-                ?: throw EntityNotFoundException("Operação não encontrada")
+        val creditCard = creditCardDAO.getCreditCardById(getOperation.creditCard)
+            ?: throw EntityNotFoundException("Cartão de id: ${getOperation.creditCard} não encontrado")
 
-        creditCard.availableCreditLimit += creditCardCharge.purchaseValue
+        creditCard.availableCreditLimit += getOperation.value
         creditCardDAO.updateAvailableCreditLimit(creditCard)
 
-        return CreditCardOperation(
-                id = "", //will be auto-generated
-                creditCard = getOperation.creditCard,
-                type = "Estorno",
-                value = creditCardCharge.purchaseValue * -1,
-                description = "Rollback of operation ${getOperation.id} - R$ {getOperation.purchaseValue}",
-                month = LocalDateTime.now().monthValue,
-                year = LocalDateTime.now().year
+        val rollbackOperation = CreditCardOperation(
+            id = "", //will be auto-generated
+            creditCard = getOperation.creditCard,
+            type = "Estorno",
+            value = getOperation.value * -1,
+            description = "Rollback of operation ${getOperation.id} - R$ ${getOperation.value}",
+            month = LocalDateTime.now().monthValue,
+            year = LocalDateTime.now().year
         )
+
+        return creditCardOperationDAO.rollbackOperation(rollbackOperation)
     }
-    
+
     override fun operationReport(
         creditCardId: String,
         operationMonth: Int,
@@ -61,7 +60,7 @@ abstract class CreditCardOperationService(
 
         return creditCardOperationDAO.operationReport(creditCardId, operationMonth, operationYear)
     }
-    
+
     override fun createCreditCardOperation(creditCardCharge: CreditCardCharge): List<CreditCardOperation> {
         val creditCardOperationList: MutableList<CreditCardOperation> = mutableListOf()
         var chargingPeriod = LocalDate.now().withDayOfMonth(1)
