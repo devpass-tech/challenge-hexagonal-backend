@@ -8,5 +8,4 @@ interface CreditCardOperationRepository : CrudRepository<CreditCardOperationEnti
 
     @Query("SELECT ccoe FROM CreditCardOperationEntity ccoe WHERE ccoe.id = ?1 AND ccoe.month = ?2 AND ccoe.year = ?3")
     fun listByPeriod(creditCardId: String, month: Int, year: Int): List<CreditCardOperationEntity>
-
 }

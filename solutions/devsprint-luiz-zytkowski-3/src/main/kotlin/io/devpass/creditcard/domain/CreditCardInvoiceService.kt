@@ -5,6 +5,7 @@ import io.devpass.creditcard.domain.exceptions.OwnedException
 import io.devpass.creditcard.domain.objects.CreditCardInvoice
 import io.devpass.creditcard.domain.objects.CreditCardInvoiceByDate
 import io.devpass.creditcard.domainaccess.ICreditCardInvoiceServiceAdapter
+import javax.persistence.EntityNotFoundException
 import java.time.LocalDateTime
 
 class CreditCardInvoiceService(
@@ -27,5 +28,14 @@ class CreditCardInvoiceService(
         }
 
         return creditCardInvoiceDAO.findInvoiceByDate(creditCardInvoiceByDate)
+    }
+
+    override fun generateCreditCardInvoice(
+        creditCardId: String,
+    ): CreditCardInvoice {
+        creditCardInvoiceDAO.getById(creditCardId)
+            ?: throw EntityNotFoundException("Cartão de id: $creditCardId não encontrado")
+
+        return creditCardInvoiceDAO.generateCreditCardInvoice(creditCardId)
     }
 }

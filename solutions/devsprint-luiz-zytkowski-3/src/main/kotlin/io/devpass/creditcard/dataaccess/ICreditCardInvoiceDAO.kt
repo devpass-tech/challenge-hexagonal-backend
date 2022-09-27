@@ -7,4 +7,6 @@ interface ICreditCardInvoiceDAO {
     fun getById(id: String): CreditCardInvoice?
 
     fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): CreditCardInvoice?
+
+    fun generateCreditCardInvoice(creditCardId: String) : CreditCardInvoice
 }
