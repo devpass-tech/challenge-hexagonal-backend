@@ -1,6 +1,6 @@
 CREATE TABLE credit_card
 (
-    id                     VARCHAR(32) PRIMARY KEY NOT NULL,
+    id                     VARCHAR(36) PRIMARY KEY NOT NULL,
     owner                  VARCHAR(11)             NOT NULL,
     number                 VARCHAR(16)             NOT NULL,
     security_code          VARCHAR(3)              NOT NULL,
