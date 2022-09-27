@@ -9,6 +9,6 @@ import io.devpass.creditcard.domain.objects.ActionResponse
 interface IAccountManagementGateway {
     fun getByCPF(CPF: String): Account
     fun getAccountById(accountId : String) : Account
-    fun createAccount(accountCreationRequest: AccountCreationRequest) : Account
+    fun createAccount(cpf: String) : Account
     fun withdraw(transaction: Transaction) : ActionResponse
 }

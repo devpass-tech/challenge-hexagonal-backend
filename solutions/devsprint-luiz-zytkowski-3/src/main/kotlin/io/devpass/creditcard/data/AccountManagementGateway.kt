@@ -39,10 +39,10 @@ class AccountManagementGateway(
         }
     }
     
-    override fun createAccount(accountCreationRequest: AccountCreationRequest): Account {
+    override fun createAccount(cpf: String): Account {
         val (_, result, response) = Fuel
             .post("$baseUrl/account-management/create")
-            .objectBody(accountCreationRequest)
+            .objectBody(AccountCreationRequest(taxId = cpf))
             .responseObject<AccountResponse>(jacksonDeserializerOf())
         return if (result.isSuccessful) {
             response.get().toAccount()
