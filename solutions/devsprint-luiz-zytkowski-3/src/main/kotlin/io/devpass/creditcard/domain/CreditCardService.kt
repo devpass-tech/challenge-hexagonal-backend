@@ -1,7 +1,7 @@
 package io.devpass.creditcard.domain
 
-import io.devpass.creditcard.data.AntiFraudGateway
 import io.devpass.creditcard.dataaccess.IAccountManagementGateway
+import io.devpass.creditcard.dataaccess.IAntiFraudGateway
 import io.devpass.creditcard.dataaccess.ICreditCardDAO
 import io.devpass.creditcard.domain.creditcard.CreditCardNumberGenerator
 import io.devpass.creditcard.domain.exceptions.RequestCreditCardException
@@ -12,7 +12,7 @@ import io.devpass.creditcard.domainaccess.ICreditCardServiceAdapter
 class CreditCardService(
     private val creditCardDAO: ICreditCardDAO,
     private val accountManagementGateway: IAccountManagementGateway,
-    private val antiFraudGateway: AntiFraudGateway,
+    private val antiFraudGateway: IAntiFraudGateway,
 ) : ICreditCardServiceAdapter {
 
     override fun findCreditCardById(creditCardId: String): CreditCard? {
