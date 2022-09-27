@@ -16,6 +16,19 @@ class CreditCardOperationDAO(
             .toCreditCardOperation() else null
     }
 
+    override fun rollbackOperation(creditCardOperation: CreditCardOperation): CreditCardOperation {
+        return creditCardOperationRepository.save(
+                CreditCardOperationEntity(
+                        id = UUID.randomUUID().toString(),
+                        type = creditCardOperation.type,
+                        month = creditCardOperation.month,
+                        year = creditCardOperation.year,
+                        value = creditCardOperation.value,
+                        description = creditCardOperation.description,
+                )
+        ).toCreditCardOperation()
+    }
+
     override fun save(creditCardOperation: CreditCardOperation): CreditCardOperation {
         return creditCardOperationRepository.save(
             CreditCardOperationEntity(

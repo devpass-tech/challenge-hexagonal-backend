@@ -21,6 +21,7 @@ data class CreditCardOperationEntity(
     @CreationTimestamp
     var createdAt: LocalDateTime = LocalDateTime.now(),
 ) {
+
     fun toCreditCardOperation(): CreditCardOperation {
         return CreditCardOperation(
             this.id,
