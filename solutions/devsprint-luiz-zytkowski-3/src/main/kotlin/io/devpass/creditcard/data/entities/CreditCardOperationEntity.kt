@@ -12,6 +12,7 @@ import javax.persistence.Table
 data class CreditCardOperationEntity(
         @Id
         var id: String,
+        var credit_card: String,
         var type: String,
         var value: Double,
         var description: String,
@@ -20,6 +21,7 @@ data class CreditCardOperationEntity(
         @CreationTimestamp
         var createdAt: LocalDateTime = LocalDateTime.now(),
 ) {
+
     fun toCreditCardOperation(): CreditCardOperation {
         return CreditCardOperation(
             this.id,

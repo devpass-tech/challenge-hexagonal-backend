@@ -5,8 +5,7 @@ import io.devpass.creditcard.domain.objects.CreditCardOperation
 
 
 interface ICreditCardOperationServiceAdapter {
-
     fun getById(creditCardOperationId: String): CreditCardOperation?
 
-    fun rollbackOperation(creditCardCharge: CreditCardCharge)
+    fun rollbackOperation(creditCardCharge: CreditCardCharge, creditCardOperation: CreditCardOperation): CreditCardOperation
 }

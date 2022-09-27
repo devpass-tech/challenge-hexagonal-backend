@@ -1,6 +1,7 @@
 package io.devpass.creditcard.transport.controllers
 
 import io.devpass.creditcard.domain.exceptions.OwnedException
+import io.devpass.creditcard.domain.objects.CreditCardCharge
 import io.devpass.creditcard.domain.objects.CreditCardOperation
 import io.devpass.creditcard.domainaccess.ICreditCardOperationServiceAdapter
 import io.devpass.creditcard.transport.requests.CreditCardChargeRequest
@@ -24,7 +25,7 @@ class CreditCardOperationController(
     }
 
     @PutMapping
-    fun rollbackOperation(@RequestBody creditCardChargeRequest: CreditCardChargeRequest) : CreditCardOperation? {
-        return creditCardOperationServiceAdapter.rollbackOperation(creditCardChargeRequest.toCreditCardCharge())
+    fun rollbackOperation(@RequestBody creditCardCharge:CreditCardCharge, creditCardOperation: CreditCardOperation) : CreditCardOperation {
+        return creditCardOperationServiceAdapter.rollbackOperation(creditCardCharge, creditCardOperation)
     }
 }
