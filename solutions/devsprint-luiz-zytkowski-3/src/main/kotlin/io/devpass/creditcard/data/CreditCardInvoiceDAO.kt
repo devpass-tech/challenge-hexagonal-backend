@@ -3,12 +3,12 @@ package io.devpass.creditcard.data
 
 import io.devpass.creditcard.data.entities.CreditCardInvoiceEntity
 import io.devpass.creditcard.data.repositories.CreditCardInvoiceRepository
-import io.devpass.creditcard.data.repositories.CreditCardOperationRepository
 import io.devpass.creditcard.dataaccess.ICreditCardInvoiceDAO
+import io.devpass.creditcard.domain.exceptions.EntityNotFoundException
 import io.devpass.creditcard.domain.objects.CreditCardInvoice
 import io.devpass.creditcard.domain.objects.CreditCardInvoiceByDate
 import java.time.LocalDateTime
-import java.util.UUID
+import java.util.*
 
 class CreditCardInvoiceDAO(
     private val creditCardInvoiceRepository: CreditCardInvoiceRepository,
@@ -27,7 +27,7 @@ class CreditCardInvoiceDAO(
         ).firstOrNull()?.toCreditCardInvoice()
     }
 
-    override fun generateCreditCardInvoice(creditCardInvoice : CreditCardInvoice): CreditCardInvoice {
+    override fun generateCreditCardInvoice(creditCardInvoice: CreditCardInvoice): CreditCardInvoice {
         return creditCardInvoiceRepository.save(
             CreditCardInvoiceEntity(
                 id = UUID.randomUUID().toString(),
@@ -39,5 +39,13 @@ class CreditCardInvoiceDAO(
                 paidAt = null
             )
         ).toCreditCardInvoice()
+    }
+
+    override fun update(creditCardInvoice: CreditCardInvoice) {
+        val creditCardInvoiceEntity = creditCardInvoiceRepository.findById(creditCardInvoice.id).let {
+            if (it.isPresent) it.get() else throw EntityNotFoundException("Invoice not found with ID ${creditCardInvoice.id}")
+        }
+        creditCardInvoiceEntity.paidAt = creditCardInvoice.paidAt
+        creditCardInvoiceRepository.save(creditCardInvoiceEntity)
     }
 }

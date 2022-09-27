@@ -61,11 +61,13 @@ class BeanGenerator {
         creditCardDAO: ICreditCardDAO,
         creditCardInvoiceDAO: ICreditCardInvoiceDAO,
         creditCardOperationDAO: ICreditCardOperationDAO,
+        accountManagementGateway: IAccountManagementGateway,
     ): ICreditCardInvoiceServiceAdapter {
         return CreditCardInvoiceService(
             creditCardDAO,
             creditCardInvoiceDAO,
             creditCardOperationDAO,
+            accountManagementGateway,
         )
     }
 
