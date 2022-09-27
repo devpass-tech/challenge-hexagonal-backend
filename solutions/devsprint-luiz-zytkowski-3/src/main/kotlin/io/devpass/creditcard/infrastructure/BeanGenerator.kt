@@ -1,5 +1,7 @@
 package io.devpass.creditcard.infrastructure
 
+import io.devpass.creditcard.data.*
+import io.devpass.creditcard.data.entities.CreditCardEntity
 import io.devpass.creditcard.data.AccountManagementGateway
 import io.devpass.creditcard.data.AntiFraudGateway
 import io.devpass.creditcard.data.CreditCardDAO
@@ -36,8 +38,9 @@ class BeanGenerator {
     fun creditCardServiceAdapter(
         creditCardRepository: ICreditCardDAO,
         accountManagementGateway: IAccountManagementGateway,
+        antiFraudGateway: IAntiFraudGateway,
     ): ICreditCardServiceAdapter {
-        return CreditCardService(creditCardRepository, accountManagementGateway)
+        return CreditCardService(creditCardRepository, accountManagementGateway, antiFraudGateway)
     }
 
     @Bean
@@ -54,15 +57,23 @@ class BeanGenerator {
     }
 
     @Bean
-    fun creditCardInvoiceDAO(creditCardInvoiceRepository: CreditCardInvoiceRepository): ICreditCardInvoiceDAO {
+    fun creditCardInvoiceDAO(
+        creditCardInvoiceRepository: CreditCardInvoiceRepository,
+    ): ICreditCardInvoiceDAO {
         return CreditCardInvoiceDAO(creditCardInvoiceRepository)
     }
 
     @Bean
     fun creditCardInvoiceServiceAdapter(
+        creditCardDAO: ICreditCardDAO,
         creditCardInvoiceDAO: ICreditCardInvoiceDAO,
+        creditCardOperationDAO: ICreditCardOperationDAO,
     ): ICreditCardInvoiceServiceAdapter {
-        return CreditCardInvoiceService(creditCardInvoiceDAO)
+        return CreditCardInvoiceService(
+            creditCardDAO,
+            creditCardInvoiceDAO,
+            creditCardOperationDAO,
+        )
     }
 
     @Bean

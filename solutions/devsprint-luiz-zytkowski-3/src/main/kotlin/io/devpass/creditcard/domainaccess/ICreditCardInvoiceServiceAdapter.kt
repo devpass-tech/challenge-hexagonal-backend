@@ -7,4 +7,6 @@ interface ICreditCardInvoiceServiceAdapter {
     fun getById(creditCardInvoiceId: String): CreditCardInvoice?
 
     fun findInvoiceByDate(creditCardInvoiceByDate: CreditCardInvoiceByDate): CreditCardInvoice?
+
+    fun generateCreditCardInvoice(creditCardId: String) : CreditCardInvoice
 }
