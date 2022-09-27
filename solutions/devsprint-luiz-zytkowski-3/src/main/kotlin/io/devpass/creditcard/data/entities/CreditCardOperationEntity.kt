@@ -10,22 +10,22 @@ import javax.persistence.Table
 @Entity
 @Table(name = "credit_card_operation")
 data class CreditCardOperationEntity(
-        @Id
-        var id: String,
-        var credit_card: String,
-        var type: String,
-        var value: Double,
-        var description: String,
-        var month: Int,
-        var year: Int,
-        @CreationTimestamp
-        var createdAt: LocalDateTime = LocalDateTime.now(),
+    @Id
+    var id: String,
+    var creditCard: String,
+    var type: String,
+    var value: Double,
+    var description: String,
+    var month: Int,
+    var year: Int,
+    @CreationTimestamp
+    var createdAt: LocalDateTime = LocalDateTime.now(),
 ) {
 
     fun toCreditCardOperation(): CreditCardOperation {
         return CreditCardOperation(
             this.id,
-            this.credit_card,
+            this.creditCard,
             this.type,
             this.value,
             this.description,
@@ -33,5 +33,19 @@ data class CreditCardOperationEntity(
             this.year,
             this.createdAt
         )
+    }
+
+    companion object {
+        fun fromCreditCardOperation(creditCardOperation: CreditCardOperation): CreditCardOperationEntity {
+            return CreditCardOperationEntity(
+                id = creditCardOperation.id,
+                creditCard = creditCardOperation.creditCard,
+                type = creditCardOperation.type,
+                month = creditCardOperation.month,
+                year = creditCardOperation.year,
+                value = creditCardOperation.value,
+                description = creditCardOperation.description
+            )
+        }
     }
 }
