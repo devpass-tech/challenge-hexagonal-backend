@@ -5,6 +5,7 @@ import io.devpass.creditcard.domain.objects.CreditCardInvoice
 import io.devpass.creditcard.domainaccess.ICreditCardInvoiceServiceAdapter
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -20,12 +21,10 @@ class CreditCardInvoiceController(
             ?: throw OwnedException("Credit Card Invoice Not found with ID: $creditCardInvoiceId")
     }
 
-    @GetMapping("/")
+    @PostMapping
     fun generateCreditCardInvoice(
-        @RequestParam creditCardId: String,
-        invoiceMonth: Int,
-        invoiceYear: Int
+        @RequestParam creditCardId: String
     ): CreditCardInvoice {
-        return creditCardInvoiceServiceAdapter.generateCreditCardInvoice(creditCardId, invoiceMonth, invoiceYear)
+        return creditCardInvoiceServiceAdapter.generateCreditCardInvoice(creditCardId)
     }
 }
