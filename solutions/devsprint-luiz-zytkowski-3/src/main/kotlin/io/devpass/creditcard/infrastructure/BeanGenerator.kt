@@ -59,16 +59,21 @@ class BeanGenerator {
     @Bean
     fun creditCardInvoiceDAO(
         creditCardInvoiceRepository: CreditCardInvoiceRepository,
-        creditCardOperationRepository: CreditCardOperationRepository
     ): ICreditCardInvoiceDAO {
-        return CreditCardInvoiceDAO(creditCardInvoiceRepository, creditCardOperationRepository)
+        return CreditCardInvoiceDAO(creditCardInvoiceRepository)
     }
 
     @Bean
     fun creditCardInvoiceServiceAdapter(
+        creditCardDAO: ICreditCardDAO,
         creditCardInvoiceDAO: ICreditCardInvoiceDAO,
+        creditCardOperationDAO: ICreditCardOperationDAO,
     ): ICreditCardInvoiceServiceAdapter {
-        return CreditCardInvoiceService(creditCardInvoiceDAO)
+        return CreditCardInvoiceService(
+            creditCardDAO,
+            creditCardInvoiceDAO,
+            creditCardOperationDAO,
+        )
     }
 
     @Bean

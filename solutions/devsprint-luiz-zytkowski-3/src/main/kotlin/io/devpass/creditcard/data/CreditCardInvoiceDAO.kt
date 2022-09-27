@@ -12,7 +12,6 @@ import java.util.UUID
 
 class CreditCardInvoiceDAO(
     private val creditCardInvoiceRepository: CreditCardInvoiceRepository,
-    private val creditCardOperationRepository: CreditCardOperationRepository
 ) : ICreditCardInvoiceDAO {
     override fun getById(id: String): CreditCardInvoice? {
         val creditCardInvoiceEntity = creditCardInvoiceRepository.findById(id)
@@ -26,30 +25,16 @@ class CreditCardInvoiceDAO(
             creditCardInvoiceByDate.month,
             creditCardInvoiceByDate.year
         ).firstOrNull()?.toCreditCardInvoice()
-
     }
 
-    override fun generateCreditCardInvoice(creditCardId: String): CreditCardInvoice {
-        val listOfCreditCardOperation =
-            creditCardOperationRepository.listByPeriod(
-                creditCardId,
-                LocalDateTime.now().monthValue,
-                LocalDateTime.now().year
-            ).filter {
-                it.type == "Cobrança" || it.type == "Estorno"
-            }.map { it.toCreditCardOperation() }
-
-        val invoiceValue = listOfCreditCardOperation.sumOf {
-            it.value
-        }
-
-        return creditCardInvoiceRepository.save<CreditCardInvoiceEntity?>(
+    override fun generateCreditCardInvoice(creditCardInvoice : CreditCardInvoice): CreditCardInvoice {
+        return creditCardInvoiceRepository.save(
             CreditCardInvoiceEntity(
                 id = UUID.randomUUID().toString(),
-                creditCard = creditCardId,
-                month = LocalDateTime.now().monthValue,
-                year = LocalDateTime.now().year,
-                value = invoiceValue,
+                creditCard = creditCardInvoice.creditCard,
+                month = creditCardInvoice.month,
+                year = creditCardInvoice.year,
+                value = creditCardInvoice.value,
                 createdAt = LocalDateTime.now(),
                 paidAt = null
             )
