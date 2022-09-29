@@ -19,18 +19,7 @@ class CreditCardOperationController(
     private val creditCardOperationServiceAdapter: ICreditCardOperationServiceAdapter,
 ) {
 
-    @GetMapping("/{creditCardOperationId}")
-    fun getById(@PathVariable creditCardOperationId: String): CreditCardOperation {
-        return creditCardOperationServiceAdapter.getById(creditCardOperationId)
-            ?: throw OwnedException("Credit Card Operation Not found with ID: $creditCardOperationId")
-    }
-
-    @PutMapping("/rollback/{creditCardOperationId}")
-    fun rollbackOperation(@PathVariable creditCardOperationId: String) : CreditCardOperation {
-        return creditCardOperationServiceAdapter.rollbackOperation(creditCardOperationId)
-    }
-
-    @GetMapping("/")
+    @GetMapping("/by-date")
     fun operationReport(
         @RequestParam
         creditCardId: String,
@@ -40,6 +29,17 @@ class CreditCardOperationController(
         operationYear: Int
     ): List<CreditCardOperation?> {
         return creditCardOperationServiceAdapter.operationReport(creditCardId, operationMonth, operationYear)
+    }
+
+    @GetMapping("/{creditCardOperationId}")
+    fun getById(@PathVariable creditCardOperationId: String): CreditCardOperation {
+        return creditCardOperationServiceAdapter.getById(creditCardOperationId)
+            ?: throw OwnedException("Credit Card Operation Not found with ID: $creditCardOperationId")
+    }
+
+    @PutMapping("/rollback/{creditCardOperationId}")
+    fun rollbackOperation(@PathVariable creditCardOperationId: String) : CreditCardOperation {
+        return creditCardOperationServiceAdapter.rollbackOperation(creditCardOperationId)
     }
     
     @PostMapping

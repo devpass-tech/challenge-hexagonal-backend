@@ -65,7 +65,7 @@ class CreditCardOperationService(
         val creditCardOperationList: MutableList<CreditCardOperation> = mutableListOf()
         var chargingPeriod = LocalDate.now().withDayOfMonth(1)
 
-        for (i in 1 until creditCardCharge.installmentNumber) {
+        for (i in 1 until creditCardCharge.installmentNumber + 1) {
             creditCardOperationList.add(
                 CreditCardOperation(
                     id = "", //will be auto-generated
